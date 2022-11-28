@@ -40,7 +40,7 @@ function getAllMovieTitles(movies) {
     })
     return title
   } catch(error) {
-    console.log(error)
+    console.error(error)
   }
 }
 
@@ -62,7 +62,19 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies,rating="G") {
+  if(!movies.length){
+    throw "movies array is empty"
+  }
+  try {
+    let rat = movies.some((element) => {
+    return element.rated === rating
+   })
+   return rat
+} catch (error) {
+  console.error(error)
+}
+}
 
 /**
  * findById()
