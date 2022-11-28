@@ -31,10 +31,10 @@ const exampleMovies = require("./movies");
     ];
  */
 function getAllMovieTitles(movies) {
-const movieTitle = movies.map((movie) => movie.title) //turn function with variable, access and iterate through all the movie titles with map.
+const movieTitle = movies.map((movie) => movie.title) //turn function with variable, access and iterate through all the movie titles with map. and it will input all movie titles into an array
   if (!movies.length) {
     throw 'error. No movies'
-  } //throw an error
+  } //create my own custom error with throw
   return movieTitle
 } //return variable of movieTitle variable to the end
 
@@ -56,7 +56,14 @@ const movieTitle = movies.map((movie) => movie.title) //turn function with varia
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies,rating="G") {
+  const movieRating = movies.some((movie) => movie.rated === rating)
+  //create movieRating variable to use arrow function to iterate through each movie with use of parameters and access all ratings with strictly equals to rating. some() provides boolean; true = given rating, false = no movie
+  if (!movies.length) {
+    throw 'error. No movies'
+  }//create my own custom error with throw
+  return movieRating
+}//return first variable of movieRating
 
 /**
  * findById()
@@ -74,7 +81,9 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies,id) {
+
+}
 
 /**
  * filterByGenre()
