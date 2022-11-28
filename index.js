@@ -87,7 +87,18 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+    // If "movies" array is empty, throws error string.
+    if (movies.length === 0) {
+      throw "Movies array is empty.";
+    }
+    // If "movies" array has a movie with .imdbID property equal to id argument, returns movie.
+    if (movies.find(movie => movie.imdbID === id)) {
+      return movies.find(movie => movie.imdbID === id);
+    }
+    // if "if" conditional above does not trigger, returns null.
+    return null;
+}
 
 /**
  * filterByGenre()
