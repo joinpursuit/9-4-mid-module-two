@@ -76,7 +76,7 @@ describe("checkIfAnyMovieHasRating()", () => {
   });
 });
 
-describe("findById()", () => {
+describe.only("findById()", () => {
   test("should use the `.find()` method", () => {
     const text = findById.toString();
     expect(text).toMatch(/\.find\(.*\)/s);
