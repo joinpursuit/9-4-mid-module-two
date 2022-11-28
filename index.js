@@ -129,7 +129,21 @@ try {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies,genre) {
+  if(!movies.length){
+    throw "movies array is empty"
+  }
+try{
+  let arr = movies.filter((element) => {
+    if(element.genre.toLowerCase().includes(genre.toLowerCase())){
+      return element
+    }
+  })
+    return arr
+} catch (error) {
+  console.error(error)
+  }
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
