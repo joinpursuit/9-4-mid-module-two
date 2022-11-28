@@ -30,7 +30,15 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  if (!movies.length) {
+    throw "No movies in array";
+  }
+  const movieTitles = movies.map((element) => {
+    return element.title;
+  });
+  return movieTitles;
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +58,15 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+  if (!movies.length) {
+    throw "No movies in array";
+  }
+  const ratedMovies = movies.some((element) => {
+    return element.rated === rating;
+  });
+  return ratedMovies;
+}
 
 /**
  * findById()
