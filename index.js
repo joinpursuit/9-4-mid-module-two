@@ -55,7 +55,11 @@ return movieTitles;
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+  if (movies.length === 0) throw 'Error';
+  let movieRating = movies.some(movie => movie.rated === rating);
+  return movieRating;
+}
 
 /**
  * findById()
@@ -97,7 +101,7 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre(movies, genre) {
+function filterByGenre() {
  
 }
 
