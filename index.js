@@ -30,7 +30,19 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  if(!movies.length){
+    throw "movies array is empty"
+  }
+  try {
+    let title = movies.map((element) => {
+      return element.title
+    })
+    return title
+  } catch(error) {
+    console.log(error)
+  }
+}
 
 /**
  * checkIfAnyMovieHasRating()
