@@ -1,5 +1,6 @@
 /*
-  Do not change the line below. If you'd like to run code from this file, you may use the `exampleMovies` variable below to gain access to an array of movies.
+  Do not change the line below. If you'd like to run code from this file, you may use the `exampleMovies`
+   variable below to gain access to an array of movies.
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
@@ -9,7 +10,8 @@ const exampleMovies = require("./movies");
 /**
  * getAllMovieTitles()
  * -----------------------------
- * Returns all of titles from an array of movies. If the inputted `movies` array is empty, throw an error with a message.
+ * Returns all of titles from an array of movies. If the inputted `movies` array is empty, throw an 
+ * error with a message.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
  * @returns {string[]|Error} An array of strings, which are movie titles.
  *
@@ -30,7 +32,11 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  if (movies.length == 0) throw 'There are no movies!' 
+  const titles = movies.map((movie) => movie.title);
+  return titles;
+}
 
 /**
  * checkIfAnyMovieHasRating()
