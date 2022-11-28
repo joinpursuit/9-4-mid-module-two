@@ -34,7 +34,7 @@ function getAllMovieTitles(movies) {
 const movieTitle = movies.map((movie) => movie.title) //turn function with variable, access and iterate through all the movie titles with map. and it will input all movie titles into an array
   if (!movies.length) {
     throw 'error. No movies'
-  } //create my own custom error with throw
+  } //create my own custom error with throw if no movies
   return movieTitle
 } //return variable of movieTitle variable to the end
 
@@ -61,7 +61,7 @@ function checkIfAnyMovieHasRating(movies,rating="G") {
   //create movieRating variable to use arrow function to iterate through each movie with use of parameters and access all ratings with strictly equals to rating. some() provides boolean; true = given rating, false = no movie
   if (!movies.length) {
     throw 'error. No movies'
-  }//create my own custom error with throw
+  }//create my own custom error with throw if no movies
   return movieRating
 }//return first variable of movieRating
 
@@ -82,7 +82,12 @@ function checkIfAnyMovieHasRating(movies,rating="G") {
     };
  */
 function findById(movies,id) {
-
+if (!movies.length) {
+  throw 'error. No movies'
+}//add custom error throw if no movies
+const foundId = movies.find((movie) => movie.imdbID === id)
+//.find searches for specific item in the array. It access in the array, the imdbID strictly equal to the id parameter. In return, returns entire movie with IMDB ID. If no movie found, it returns null
+return foundId || null
 }
 
 /**
