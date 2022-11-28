@@ -30,7 +30,15 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  // Error catch if movies array is empty
+  if (movies.length == 0) throw 'ERROR: No movies.';
+  // Use of map to iterate through provided movies array and return each title
+  const movTitles = movies.map((movie) => {
+    return movie.title;
+  })
+  return movTitles;
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +58,12 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = 'G') {
+    // Error catch if movies array is empty
+    if (movies.length == 0) throw 'ERROR: No movies.';
+    // Using some, we check to see if the rating param is present in the 'rated' value of each movie 
+    return movies.some(movie => movie.rated === rating)
+}
 
 /**
  * findById()
@@ -68,7 +81,7 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById() { }
 
 /**
  * filterByGenre()
@@ -92,7 +105,7 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre() { }
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +131,7 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear() { }
 
 /**
  * checkMinMetascores()
@@ -134,7 +147,7 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores() { }
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +173,7 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie() { }
 
 // Do not change anything below this line.
 module.exports = {
