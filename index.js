@@ -3,7 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
-const exampleMovies = require("./movies");
+const exampleMovies = require('./movies')
 // Do not change the line above.
 
 /**
@@ -30,7 +30,10 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  if (movies.length < 1) throw 'No movies found!'
+  return (titles = movies.map(movie => movie.title))
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +53,10 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = 'G') {
+  if (movies.length < 1) throw 'No movies found!'
+  return movies.some(movie => movie.rated === rating)
+}
 
 /**
  * findById()
@@ -68,8 +74,7 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
-
+function findById(movies, id) {}
 /**
  * filterByGenre()
  * -----------------------------
@@ -92,7 +97,7 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +123,7 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {}
 
 /**
  * checkMinMetascores()
@@ -134,7 +139,7 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metaScore) {}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +165,7 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {}
 
 // Do not change anything below this line.
 module.exports = {
@@ -171,4 +176,4 @@ module.exports = {
   checkMinMetascores,
   getAllMoviesReleasedAtOrBeforeYear,
   getRottenTomatoesScoreByMovie,
-};
+}
