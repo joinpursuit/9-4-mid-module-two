@@ -31,9 +31,11 @@ const exampleMovies = require("./movies");
     ];
  */
 function getAllMovieTitles(movies) {
+  // If "movies" array is empty, throws error string.
   if (movies.length === 0) {
     throw "Movies array is empty.";
   }
+  // Uses .map to return titles.
   return movies.map(movie => movie.title);
 }
 
