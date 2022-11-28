@@ -57,7 +57,19 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+// rating parameter default "G".
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+  // If "movies" array is empty, throws error string.
+  if (movies.length === 0) {
+    throw "Movies array is empty.";
+  }
+  // If some movie .rated property equals rating, returns true.
+  if (movies.some(movie => movie.rated === rating)) {
+    return true;
+  }
+  // If the "if" conditional above doesn't trigger, returns false.
+  return false;
+}
 
 /**
  * findById()
