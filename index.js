@@ -67,7 +67,7 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
   }
 
   //return a boolean if a movie has the specific rating
-  return movies.some(movie => movie.rating === rating);
+  return movies.some(movie => movie.rated === rating);
 }
 
 /**
