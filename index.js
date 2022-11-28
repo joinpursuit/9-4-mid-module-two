@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -30,7 +31,15 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(arr) {
+  if (arr.length === 0) {
+    throw console.error();
+  }
+  let output = arr.map((el) => {
+    return el.title;
+  });
+  return output;
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +59,19 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(arr, rated = "G") {
+  if (arr.length === 0) {
+    throw console.error();
+  }
+  return arr.some((el) => {
+    if (el.rated === rated) {
+      return true;
+    }
+    if (el.rated !== rated) {
+      return false;
+    }
+  });
+}
 
 /**
  * findById()
