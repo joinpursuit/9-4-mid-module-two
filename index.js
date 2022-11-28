@@ -7,7 +7,7 @@ const exampleMovies = require("./movies");
 // Do not change the line above.
 
 /**
- * getAllMovieTitles()
+ * getAllMovieTitles() 
  * -----------------------------
  * Returns all of titles from an array of movies. If the inputted `movies` array is empty, throw an error with a message.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
@@ -33,6 +33,7 @@ const exampleMovies = require("./movies");
 function getAllMovieTitles(movies) {
   // loop thru entire movie titles array
   // throw error if movies [] empty
+
   if(movies.length === 0) {
     throw 'Error. There are no movies listed.';
   }
@@ -57,7 +58,21 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rated = 'G') {
+    // should use the `.some()` method 
+    // ✕ should throw an error if there are no movies
+    // ✕ should return `true` if any movie in the list has the given rating 
+    // ✕ should return `false` if any movie in the list has the given rating 
+    // ✕ should dynamically change depending on the movies inputted
+    // ✕ if no rating is passed, the default should be 'G'
+     
+  if(movies.length === 0) {
+    throw 'There are no movies listed.';
+  }
+  let rating = movies.some((movie) => { return movie.rated === rated }
+  );
+  return rating;
+}
 
 /**
  * findById()
