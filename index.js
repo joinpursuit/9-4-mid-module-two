@@ -146,7 +146,14 @@ return foundId || null
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
+//   if (!movies.length) {
+//     throw 'error' //create custom error if no movies
+//   }
+//   return movies.filter((movie) => { 
+//     Number(movie.released.split(' ') [2] <= year)
+// })
+}
 
 /**
  * checkMinMetascores()
@@ -162,7 +169,17 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies,metascore) {
+  if (!movies.length) {
+    throw 'Error. There are no movies.'
+  }//custom error, there are no movies
+  return movies.every((movie) => {
+    //.every() goes through each movie and makes sure it meets the condition of:
+    //true(all movies min metascore of least 60), 
+    //false(all movies min metascore of least 90)
+    return movie.metascore >= metascore
+  })//return accesses the metascore of each movie greater than equal to metascore parameter
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
