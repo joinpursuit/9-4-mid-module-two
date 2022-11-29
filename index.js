@@ -147,13 +147,13 @@ return foundId || null
     ];
  */
 function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
-//   if (!movies.length) {
-//     throw 'error' //create custom error if no movies
-//   }
-//   return movies.filter((movie) => { 
-//     Number(movie.released.split(' ') [2] <= year)
-// })
-}
+  if (!movies.length) {
+    throw 'error'
+  }//create custom error for no movies
+let releasedMovies = movies.filter((movie) => movie.released.slice(-4) <= year)// create variable releasedMovies to use filter method through the movies then access the date of movies, using only the year so slice -4, less than or equal to
+return releasedMovies
+}//return the movies filtered
+
 
 /**
  * checkMinMetascores()
