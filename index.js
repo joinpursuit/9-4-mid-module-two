@@ -107,6 +107,8 @@ function findById(movies, id) {
  */
 function filterByGenre(movies, genre) {
   if (movies.length === 0) throw (error)
+  genre = genre.toLowerCase()
+  genre = genre.replace(genre[0], genre[0].toUpperCase())
   return movies.filter(movie => movie.genre.includes(genre))
 }
 
@@ -185,7 +187,9 @@ function checkMinMetascores(movies, metascore) {
  */
 function getRottenTomatoesScoreByMovie(movies) {
   if (movies.length === 0) throw (error)
-  return movies.map(({title, value}) => ({[title]: value}))
+
+  return movies.map(({title, ratings}) => ({[title]: ratings.find(a => a.source === "Rotten Tomatoes").value}))
+
 }
 
 // Do not change anything below this line.
