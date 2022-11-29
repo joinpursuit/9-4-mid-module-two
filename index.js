@@ -31,12 +31,15 @@ const exampleMovies = require("./movies");
     ];
  */
 function getAllMovieTitles(movies) {
+  // I use this guard clause before all the functions - if anything is wrong with the array passed into the function, it throws an error
   if (!movies.length) {
     throw "No movies in array";
   }
+  // find each movie title
   const movieTitles = movies.map((element) => {
     return element.title;
   });
+  // return results of map() procedure
   return movieTitles;
 }
 
@@ -59,12 +62,15 @@ function getAllMovieTitles(movies) {
  *  //> false
  */
 function checkIfAnyMovieHasRating(movies, rating = "G") {
+  // the guard clause
   if (!movies.length) {
     throw "No movies in array";
   }
+  // go through array, look for any movie with given rating
   const ratedMovies = movies.some((element) => {
     return element.rated === rating;
   });
+  // return result of some()
   return ratedMovies;
 }
 
@@ -85,10 +91,13 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
     };
  */
 function findById(movies, id) {
+  // guard clause
   if (!movies.length) {
     throw "No movies in array";
   }
+  // look for first movie with ID matching the given ID
   const idMovie = movies.find((element) => element.imdbID === id);
+  // return found movie, or null if no matching movie found
   if (idMovie) {
     return idMovie;
   } else {
@@ -119,12 +128,15 @@ function findById(movies, id) {
  *  //> []
  */
 function filterByGenre(movies, genre) {
+  // guard clause
   if (!movies.length) {
     throw "No movies in array";
   }
+  // filter for movies that include the given genre, after normalizing the tested inputs to lowercase
   const genreMovies = movies.filter((movie) =>
     movie.genre.toLowerCase().includes(genre.toLowerCase())
   );
+  // return the array that comes out of the filter() procedure
   return genreMovies;
 }
 
@@ -153,15 +165,21 @@ function filterByGenre(movies, genre) {
     ];
  */
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  // guard clause
   if (!movies.length) {
     throw "No movies in array";
   }
+  // filtering movies for year
   const releasedMovies = movies.filter((movie) => {
+    // split 'released' date string in movie object into an array of strings
     const movieReleaseDate = movie.released.split(" ");
+    // the year is the third element in that array, compare it to given year
     if (movieReleaseDate[2] <= year) {
+      // if movie passes test, add it to new array
       return movie;
     }
   });
+  // return the new array
   return releasedMovies;
 }
 
@@ -180,9 +198,11 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  //>  false
  */
 function checkMinMetascores(movies, metascore) {
+  // guard clause
   if (!movies.length) {
     throw "No movies in array";
   }
+  // test every movie for given minimum score
   return movies.every((movie) => movie.metascore >= metascore);
 }
 
@@ -211,6 +231,7 @@ function checkMinMetascores(movies, metascore) {
     ];
  */
 function getRottenTomatoesScoreByMovie(movies) {
+  // guard clause
   if (!movies.length) {
     throw "No movies in array";
   }
