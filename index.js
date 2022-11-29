@@ -201,7 +201,20 @@ const exampleMovies = require("./movies");
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+    function getRottenTomatoesScoreByMovie(movies) {
+      if (movies.length === 0) 
+      throw "error";
+      let rottenScore = movies.find((movie) => {
+        if(movie.ratings === "Rotten Tomatoes") {
+          return movie.ratings;
+        }
+        // I have to access the property `source` in the property `rating` to return the key/value pair.
+        return movies.map((movie) => {
+          return {[movie.title]: movie.ratings}
+        })
+      });
+    }
+    
 
 // Do not change anything below this line.
 module.exports = {
