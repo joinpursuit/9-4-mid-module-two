@@ -205,7 +205,20 @@ function checkMinMetascores(movies,metascore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (!movies.length) {
+    throw 'error. No Movies.'
+  } //custom error, if no movies.
+  return movies.map((movie) => {
+    //go through each movie with map method and also creates an array. And create movieObject variable of empty object
+    movieObject = {}
+    //create variable of movies that use the ratings' source of rotten tomatoes with find method
+    let tomRating = movie.ratings.find((rating) => rating.source === "Rotten Tomatoes")
+    //create key, with the movie title and add value using variable tomRating and value from rotten tomatoes
+    movieObject[movie.title] = tomRating.value
+    return movieObject
+  }) //return array of objects of movie keys and their values
+}
 
 // Do not change anything below this line.
 module.exports = {
