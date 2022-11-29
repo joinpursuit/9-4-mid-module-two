@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -30,8 +31,12 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
-
+function getAllMovieTitles(movies) {
+  if (movies.length === 0) {//if there are no movies, throw an error "No Movies".
+    throw "No Movies"
+  }
+  return movies.map(movie => movie.title)//return in a new array with titles.
+}
 /**
  * checkIfAnyMovieHasRating()
  * -----------------------------
@@ -50,7 +55,12 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating="G") {
+  if (movies.length === 0) {//if there are no movies, throw an error "No Movies".
+    throw "No Movies"
+  } 
+return movies.some(movie => movie.rated === rating)//using .some to determine if movies are true/false to rating
+}
 
 /**
  * findById()
@@ -68,7 +78,7 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById() { }
 
 /**
  * filterByGenre()
@@ -92,7 +102,7 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre() { }
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +128,7 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear() { }
 
 /**
  * checkMinMetascores()
@@ -134,7 +144,7 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores() { }
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +170,7 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie() { }
 
 // Do not change anything below this line.
 module.exports = {
