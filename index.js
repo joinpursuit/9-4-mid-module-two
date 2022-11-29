@@ -78,7 +78,12 @@ return movies.some(movie => movie.rated === rating)//using .some to determine if
       // Toy Story 4
     };
  */
-function findById() { }
+function findById(movies, id) {
+  if (movies.length === 0) {//if there are no movies, throw an error "No Movies".
+    throw "No Movies"
+  } 
+return movies.find(movie => movie.imdbID === id) || null;//using .find to search for movie based on imdbID or if no movie found, return null.
+}
 
 /**
  * filterByGenre()
@@ -102,7 +107,7 @@ function findById() { }
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() { }
+function filterByGenre(movies, genre) { }
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
