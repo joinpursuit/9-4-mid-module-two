@@ -158,7 +158,9 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   }
   const releasedMovies = movies.filter((movie) => {
     const movieReleaseDate = movie.released.split(" ");
-    if (movieReleaseDate[2] <= year) {return movie};
+    if (movieReleaseDate[2] <= year) {
+      return movie;
+    }
   });
   return releasedMovies;
 }
@@ -177,7 +179,12 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  if (!movies.length) {
+    throw "No movies in array";
+  }
+  return movies.every((movie) => movie.metascore >= metascore);
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -203,7 +210,11 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (!movies.length) {
+    throw "No movies in array";
+  }
+}
 
 // Do not change anything below this line.
 module.exports = {
