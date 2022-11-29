@@ -107,7 +107,12 @@ return movies.find(movie => movie.imdbID === id) || null;//using .find to search
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre(movies, genre) { }
+function filterByGenre(movies, genre) {
+  if (movies.length === 0) {//if there are no movies, throw an error "No Movies".
+    throw "No Movies"
+  } 
+  return movies.filter(movie => movie.genre.toLowerCase().includes(genre.toLowerCase())) || [];//using .filter to the specific property we're looking for "genre" and return them with captilization edited. If there's no match, return '[]'.
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -133,7 +138,12 @@ function filterByGenre(movies, genre) { }
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() { }
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) { 
+  if (movies.year === 0) {//if there are no movies, throw an error "No Movies".
+    throw "No Movies"
+  } 
+  return movies.filter(movies => Number(movies.released <= year))
+}//filter through movies to find if the year released is less than or equal to the given year
 
 /**
  * checkMinMetascores()
@@ -149,7 +159,12 @@ function getAllMoviesReleasedAtOrBeforeYear() { }
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() { }
+function checkMinMetascores(movies, metascore) {
+  if (movies.metascore === 0) {//if there are no movies, throw an error "No Movies".
+    throw "No Movies"
+  } 
+  return movies.every(movie => movie.metascore >= metascore)
+}//using .every to find if the the specific metascore for a movie is greated than or equal to the metascore being compared to
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -175,8 +190,15 @@ function checkMinMetascores() { }
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() { }
-
+function getRottenTomatoesScoreByMovie(movies) {
+  if (movies.length === 0) {//if there are no movies, throw an error "No Movies".
+    throw "No Movies"
+  } 
+  return movies.map((movie) => {
+    let film = movie.ratings.find((rating) => rating.source === "Rotten Tomatoes")
+    return {[movie.title]: film.value}
+  })//.map to return a new array, through movie.ratings to find the movies ratings and see if they are strickly equal to the Rotten Tomatoes rating. Return the title, film and value 
+}
 // Do not change anything below this line.
 module.exports = {
   getAllMovieTitles,
