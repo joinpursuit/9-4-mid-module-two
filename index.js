@@ -60,10 +60,10 @@ function getAllMovieTitles(movies) {
  *  //> false
  */
 function checkIfAnyMovieHasRating(movies, rating = 'G') {
-    // Error catch if movies array is empty
-    if (movies.length == 0) throw 'ERROR: No movies.';
-    // Using some, we check to see if the rating param is present in the 'rated' value of each movie 
-    return movies.some(movie => movie.rated === rating)
+  // Error catch if movies array is empty
+  if (movies.length == 0) throw 'ERROR: No movies.';
+  // Using some, we check to see if the rating param is present in the 'rated' value of each movie 
+  return movies.some(movie => movie.rated === rating)
 }
 
 /**
@@ -83,13 +83,13 @@ function checkIfAnyMovieHasRating(movies, rating = 'G') {
     };
  */
 function findById(movies, id) {
-   // Error catch if movies array is empty
-   if (movies.length == 0) throw 'ERROR: No movies.';
+  // Error catch if movies array is empty
+  if (movies.length == 0) throw 'ERROR: No movies.';
   //  Searching through movies array to see find the given id param within the movie.imbdID property
-   return movies.find(movie => {
+  return movies.find(movie => {
     return movie.imdbID === id;
     // Normally find would return undefined if the given thing isnt found(when it finds it, its "truthy"), but by specifying a different "falsey" value, I am telling this functiuon to return 'null' instead of the normal 'undefined'
-   }) || null;
+  }) || null;
 }
 
 /**
@@ -115,12 +115,12 @@ function findById(movies, id) {
  *  //> []
  */
 function filterByGenre(movies, genre) {
-   // Error catch if movies array is empty
-   if (movies.length == 0) throw 'ERROR: No movies.';
+  // Error catch if movies array is empty
+  if (movies.length == 0) throw 'ERROR: No movies.';
   //  Using filter, we look through each movie genre string to see if it includes the given genre param
   //  In order to make this case-insensitive, I used toLowerCase to make all string uniformly small
-   let genreMatch = movies.filter(movie => movie.genre.toLowerCase().includes(genre.toLowerCase()))
-   return genreMatch;
+  let genreMatch = movies.filter(movie => movie.genre.toLowerCase().includes(genre.toLowerCase()))
+  return genreMatch;
 }
 
 /**
@@ -148,10 +148,10 @@ function filterByGenre(movies, genre) {
     ];
  */
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
-   // Error catch if movies array is empty
-   if (movies.length == 0) throw 'ERROR: No movies.';
+  // Error catch if movies array is empty
+  if (movies.length == 0) throw 'ERROR: No movies.';
   //  Here I am looking at each movies released string, slicing it 4 from the end(which gives us just the year).  Then, bc it was a string, I am turning that into a number, and comparing that with the given year param.  I tried doing this in a longer and more complicated way using split and join on the released string, but it kept failing repeatedly.  Once I took a step back I realized I could do all of that using slice and Number chained together instead.
-   return movies.filter(movie => Number(movie.released.slice(-4)) <= year);
+  return movies.filter(movie => Number(movie.released.slice(-4)) <= year);
 }
 
 /**
@@ -169,9 +169,9 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  //>  false
  */
 function checkMinMetascores(movies, metascore) {
-   // Error catch if movies array is empty
-   if (movies.length == 0) throw 'ERROR: No movies.';
-   return movies.every(movie => Number(movie.metascore) >= metascore);
+  // Error catch if movies array is empty
+  if (movies.length == 0) throw 'ERROR: No movies.';
+  return movies.every(movie => movie.metascore >= metascore);
 }
 
 /**
@@ -198,9 +198,13 @@ function checkMinMetascores(movies, metascore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {
-   // Error catch if movies array is empty
-   if (movies.length == 0) throw 'ERROR: No movies.';
+function getRottenTomatoesScoreByMovie(movies) {
+  // Error catch if movies array is empty
+  if (movies.length == 0) throw 'ERROR: No movies.';
+  return movies.map(movie => {
+    let rottenRating = movie.ratings.find((rating) => rating.source === 'Rotten Tomatoes');
+    return { [movie.title]: rottenRating.value };
+  })
 }
 
 // Do not change anything below this line.
