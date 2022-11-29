@@ -84,7 +84,17 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if (!movies.length) {
+    throw "No movies in array";
+  }
+  const idMovie = movies.find((element) => element.imdbID === id);
+  if (idMovie) {
+    return idMovie;
+  } else {
+    return null;
+  }
+}
 
 /**
  * filterByGenre()
@@ -108,7 +118,11 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if (!movies.length) {
+    throw "No movies in array";
+  }
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
