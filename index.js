@@ -132,7 +132,7 @@ function filterByGenre(movies, genre) {
   if(movies.length === 0) throw Error
 
   let genreMatching = movies.filter((movie) => {
-    return movie.genre.includes(genre.toLowerCase())
+    return movie.genre.includes(genre)
   })
   return genreMatching
 }
