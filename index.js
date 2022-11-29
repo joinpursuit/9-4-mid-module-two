@@ -30,7 +30,14 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  if (!movies.length) { // If the movies array has no length...
+    throw "No movies inputted"  // Then throw this error
+  } 
+    return movies.map((movie) => {  // using .map with arrow function to itterate through all movies
+      return movie.title  // and return the movie titles
+})
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +57,11 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = "G") {  // Default peramater for rating set to G 
+  if (!movies.length) { // If the movies array has no length...
+    throw "No movies inputted"  // Then throw this error
+  } return movies.some((movie) => movie.rated === rating) // Using .some, with the arrow fuction, itterates through movies until it finds the first the first truthy, then returns boolean depending on if there are any films that are rated.  If non are rated then it defauts to G as the defaut perameter.
+}
 
 /**
  * findById()
@@ -68,7 +79,13 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, ID) {
+  if (!movies.length) { // If the movies array has no length...
+    throw "No movies inputted"  // Then throw this error
+}
+    let searchID =  movies.find((movie) => movie.imdbID === ID)  // using .find with arror function, itterates through the movies array to see if a matching ID is found
+    return searchID || null  // If a match is found, it returns the first element found, otherwise returns null
+}
 
 /**
  * filterByGenre()
@@ -92,7 +109,14 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if (!movies.length) { // If the movies array has no length...
+    throw "No movies inputted"  // Then throw this error
+  }
+  return movies.filter((movie) => {  // Using .filter with arrow function to itterate through the movies to create a new array of movie objects that have a matching genre
+    return movie.genre.toLowerCase().includes(genre.toLowerCase());  // Setting all genre values to lower case and returning matching genre movies
+  })
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +142,15 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (!movies.length) {  // If the movies array has no length...
+    throw "No movies inputted"  // Then throw this error
+}
+return movies.filter((movie) => {  //Using .filter with arrow function, itterate through movie objects to create a new array, filtering out ones with correct year
+  let yearOfMovie = movie.released.split(" ");  // create variable to hold the split released year string so we can obtain just the year
+  return yearOfMovie[2] <= year;  // using the second index as the year, returning movies that years are less or equal to searched year.
+})
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +166,14 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  if (!movies.length) {  // If the movies array has no length...
+    throw "No movies inputted"  // Then throw this error
+  }
+    return movies.every((movie) => {  // using .every with arrow function to itterate through movies objects to givr true/false
+      return movie.metascore >= metascore;  // returns true/false depending on if all movies have a minimum metascore 
+    })
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +199,20 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (!movies.length) {  // If the movies array has no length...
+    throw "No movies inputted"  // Then throw this error
+  }
+
+  return movies.map((movie) => {  // using .map with arrow function to itterate through movies  
+    newMovieObj = {} // making new movie object to return collected movie objects
+    let rotRating = movie.ratings.find((rating) =>  // getting to the rating and storing in rotRating variable using .find...if the following is true
+      rating.source === "Rotten Tomatoes") // Checking to see that rating = rot toms.
+
+    newMovieObj[movie.title] = rotRating.value // storing the key value pairs
+    return newMovieObj // returning all movies with rotten values 
+  })
+}
 
 // Do not change anything below this line.
 module.exports = {
