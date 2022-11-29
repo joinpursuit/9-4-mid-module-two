@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -30,8 +31,12 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
-
+function getAllMovieTitles(movies) {
+  if (movies.length === 0) {//if there are no movies, throw an error "No Movies".
+    throw "No Movies"
+  }
+  return movies.map(movie => movie.title)//return in a new array with titles.
+}
 /**
  * checkIfAnyMovieHasRating()
  * -----------------------------
@@ -50,7 +55,12 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating="G") {
+  if (movies.length === 0) {//if there are no movies, throw an error "No Movies".
+    throw "No Movies"
+  } 
+return movies.some(movie => movie.rated === rating)//using .some to determine if movies are true/false to rating
+}
 
 /**
  * findById()
@@ -68,7 +78,12 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if (movies.length === 0) {//if there are no movies, throw an error "No Movies".
+    throw "No Movies"
+  } 
+return movies.find(movie => movie.imdbID === id) || null;//using .find to search for movie based on imdbID or if no movie found, return null.
+}
 
 /**
  * filterByGenre()
@@ -92,7 +107,12 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if (movies.length === 0) {//if there are no movies, throw an error "No Movies".
+    throw "No Movies"
+  } 
+  return movies.filter(movie => movie.genre.toLowerCase().includes(genre.toLowerCase())) || [];//using .filter to the specific property we're looking for "genre" and return them with captilization edited. If there's no match, return '[]'.
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +138,12 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) { 
+  if (movies.year === 0) {//if there are no movies, throw an error "No Movies".
+    throw "No Movies"
+  } 
+  return movies.filter(movies => Number(movies.released <= year))
+}//filter through movies to find if the year released is less than or equal to the given year
 
 /**
  * checkMinMetascores()
@@ -134,7 +159,12 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  if (movies.metascore === 0) {//if there are no movies, throw an error "No Movies".
+    throw "No Movies"
+  } 
+  return movies.every(movie => movie.metascore >= metascore)
+}//using .every to find if the the specific metascore for a movie is greated than or equal to the metascore being compared to
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,8 +190,15 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
-
+function getRottenTomatoesScoreByMovie(movies) {
+  if (movies.length === 0) {//if there are no movies, throw an error "No Movies".
+    throw "No Movies"
+  } 
+  return movies.map((movie) => {
+    let film = movie.ratings.find((rating) => rating.source === "Rotten Tomatoes")
+    return {[movie.title]: film.value}
+  })//.map to return a new array, through movie.ratings to find the movies ratings and see if they are strickly equal to the Rotten Tomatoes rating. Return the title, film and value 
+}
 // Do not change anything below this line.
 module.exports = {
   getAllMovieTitles,
