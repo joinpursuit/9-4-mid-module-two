@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -30,7 +31,18 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+    
+function getAllMovieTitles(movies) {
+   if(movies.length === 0){
+      throw error
+    }
+ const arr = movies.map((movie)=>{
+    return (movie.title)
+  })
+  return arr
+  
+}
+
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +62,17 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+  if(movies.length === 0){
+    throw error
+  }
+ let carina = movies.some((movie)=>{
+  return movie.rated === rating
+ })
+ return carina
+  }
+
+
 
 /**
  * findById()
@@ -68,7 +90,20 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if(movies.length === 0){
+    throw error
+  }
+  
+  let carina = movies.find((movie)=>{
+    return movie.imdbID === id
+  })
+  if(carina === undefined){
+    return null
+  }
+  return carina
+  
+}
 
 /**
  * filterByGenre()
@@ -92,7 +127,19 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if(movies.length === 0){
+    throw error
+  }
+  let carina = movies.filter((movie)=>{
+    // toUpperCase(movie.genre[0])
+    return movie.genre === genre
+  })
+  if(carina === undefined){
+    return []
+  }
+  return carina
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +165,16 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if(movies.length === 0){
+    throw error
+  }
+  let carina = movies.filter((movie) => {
+   let carina =  movie.released.split(" ") 
+    return parseInt(carina[carina.length -1]) <= year
+  })
+  return carina
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +190,15 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  if(movies.length === 0){
+    throw error
+  }
+  let carina = movies.every((movie) => {
+    return movie.metascore >= metascore
+  })
+  return carina
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +224,21 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if(movies.length === 0){
+    throw error
+  }
+  
+  let carina = movies.map((movie) =>{
+   return carina.push(movie.title)
+  })
+  let tyrone = movies.find((pls) => {
+return tyrone.push(pls.rating[0])
+
+  })
+  return carina.push(tyrone)
+}
+//don't judge my code
 
 // Do not change anything below this line.
 module.exports = {
