@@ -30,7 +30,29 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  let movieList=[];  //create an array for the answer
+  //error handling for if the movies array is empty
+  //However, !movies, movied===[] and movies===0 didn't work. Nor did typeof movies !== "object"
+  if (typeof movies !== "object") {
+    throw ("There are no movies");
+  }
+  //for each movie in the movies array, push the title into the answer array
+  movies.map((movie) => {
+    movieList.push(movie.title);
+  }
+  )
+  return movieList //return the movie title list
+}
+
+/*
+take in an object, called movies
+return an array of strings which are movie titles
+but use map to do it.
+BUT, an empty array should throw an error
+*/
+
+
 
 /**
  * checkIfAnyMovieHasRating()
@@ -49,8 +71,28 @@ function getAllMovieTitles() {}
  * EXAMPLE:
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
+ * 
+ *   if(movies===[""]) {
+    throw ("There are no movies in this array")
+  }
+  if(movies===[]) {
+    throw ("empty arraty")
+  }
+
+
+  }
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating="G") {
+  if(!movies) {
+    throw ("movies doesn't exist")
+  }
+ const ratingAgreement = movies.some
+ (element => element.rated === rating)
+ return ratingAgreement
+}
+//the default rating parameter is "G"
+//a variable is named
+//the object movies is checked to see if any element has the given rating
 
 /**
  * findById()
@@ -68,7 +110,19 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, imdbID) {
+//error handing for if there are no movies in the array
+  if(movies===[]) {
+    throw ("there are no movies in this array")
+  }
+//create a variable that consists of 
+  let theOne
+  theOne = movies.find(element => element.imdbID===imdbID)
+  if (theOne===false){return null}
+  return theOne
+
+
+}
 
 /**
  * filterByGenre()
@@ -92,7 +146,20 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  genre = genre.toLowerCase
+  const genreMovies=[]
+  movies.filter((element) => {
+    if (element.genre===genre){
+      genreMovies.push(element)
+    }}
+  )
+
+  return genreMovies
+}
+
+
+
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +185,15 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (movies ===[]){
+    throw "no movies in this array";
+  };
+  let moviesWanted=[]
+moviesWanted.push(movies.filter(element=>element.released<=year))
+
+ return moviesWanted
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +209,14 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  const highScore = movies.every(element =>
+    element.ratings[2][1]>=((metascore)/100))
+  return highScore
+//a variable is named that checks if every metacritic score in the given movie array is at least as large as the given metacritic score.
+//returns true or false
+//since metacritic scores are out of 100, the number given must be divided by 100.
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +242,9 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+
+}
 
 // Do not change anything below this line.
 module.exports = {
