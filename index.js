@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -33,13 +34,13 @@ const exampleMovies = require("./movies");
 function getAllMovieTitles(movies) {
   if (movies.length === 0) // or movies length < 1
   {
-    return //error message 
+    throw "The inputted 'movies' array is empty."
   }
-
-  let mapMovie = movies.map((movie) => {
-    return movie.title;
-  });
-  return mapMovie
+else {
+   return movies.map((movie) => {
+    return movie.title
+  }) }
+  
   }
 
 
@@ -61,7 +62,19 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating="G") {
+  if (movies.length === 0) {
+    throw "The inputted 'movies' array is empty.";
+  }
+if (
+  movies.some(movie => movie.rated === rating)) {
+    return true
+  }
+  else {return false}
+
+
+  //supposed to returns true or false
+}
 
 /**
  * findById()
@@ -79,7 +92,15 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if (movies.length === 0) {
+    throw "The 'movies' array is empty.";
+  }
+    let foundMovie = movies.find((movie) => 
+      movie.imdbID === id
+    )
+return foundMovie || null
+}
 
 /**
  * filterByGenre()
@@ -103,7 +124,16 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if (movies.length === 0) {
+    throw "The 'movies' array is empty."
+  }
+
+  let theProcess = (movie) => movie.genre.toLowerCase().includes(genre.toLowerCase())
+
+  return movies.filter(theProcess)
+} 
+
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -129,7 +159,13 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (movies.length === 0) {
+    throw "The 'movies' array is empty."
+  }
+
+  //return movies.filter((movie) => )
+}
 
 /**
  * checkMinMetascores()
