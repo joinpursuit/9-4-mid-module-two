@@ -30,7 +30,16 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+const getAllMovieTitles = (movies) => {
+  //guard clause
+  if(movies.length === 0){
+    throw `There are no movies.`
+  }
+
+  //map makes a new array, so we assign that array to a new variable.
+  const titles = movies.map(element => element.title)
+  return titles
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +59,15 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+const checkIfAnyMovieHasRating = (movies, rating="G") => {
+  //guard clause
+  if(movies.length === 0){
+    throw `There are no movies.`
+  }
+
+  //.some returns a boolean value
+  return movies.some(element => element.rated === rating)
+}
 
 /**
  * findById()
@@ -68,7 +85,16 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+const findById = (movies, id) => {
+  //guard clause
+  if(movies.length === 0){
+    throw `There are no movies.`
+  }
+
+  
+  const foundId = movies.find(element => element.imdbID === id)
+  return foundId || null
+}
 
 /**
  * filterByGenre()
@@ -92,7 +118,15 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+const filterByGenre = (movies, genre = []) => {
+  //guard clause
+  if(movies.length === 0){
+    throw `There are no movies`
+  }
+
+  return movies.filter(element => element.genre.toUpperCase().includes(genre.toUpperCase()))
+  
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +152,21 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+const getAllMoviesReleasedAtOrBeforeYear = (movies, year = []) => {
+  //guard clause
+  if(movies.length === 0){
+    throw `There are no movies.`
+  }
+
+  return movies.filter(element => {
+    //splitting each string and putting into array variable
+    //taking last element
+    let date = element.released.split(' ').pop()
+    if(date <= year){
+      return element
+    }
+  })
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +182,16 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+const checkMinMetascores = (movies, metascore) => {
+  //guard clause
+  if(movies.length === 0){
+    throw `There are no movies.`
+  }
+
+  //only one needs to match
+  return movies.every(element => element.metascore >= metascore)
+  
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +217,17 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+const getRottenTomatoesScoreByMovie = (movies) => {
+  //guard clause
+  if(movies.length === 0){
+    throw `There are no movies.`
+  }
+
+  return movies.map(element => {
+    let score = element.ratings.find(element => element.source === 'Rotten Tomatoes')
+    return {[element.title]: score.value}
+  })
+}
 
 // Do not change anything below this line.
 module.exports = {
