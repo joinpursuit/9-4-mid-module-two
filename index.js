@@ -30,8 +30,18 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
-
+    function getAllMovieTitles(movies, title) {
+      if (movies.length === 0) throw "Did Not Find Anything";
+      // line 34 checking ova the entire 'lenght" of the list (movies.lenght ) to see if there are NO movies listed
+      // if nothing send an error message (throw) to say "nothing is listed" 
+    
+      allTitles = movies.map((movie)=> movie.title ) 
+      // line 38 I reassigned allTitles as a (variable) a small container that will return a NEW array
+      // map (make array please), this methods tells us our approach to solving ARRAY problems.
+      // map results does not need to be pushed into an empty array. 
+      //line 38 translated:  when you look over EACH element on the list (movie)'=>' (this means to do this next action) " find each movie.title is saying find this attibute and return its information. In this case its a string 
+      return allTitles
+      };
 /**
  * checkIfAnyMovieHasRating()
  * -----------------------------
@@ -50,7 +60,20 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+ function checkIfAnyMovieHasRating(movies,rating="G") {
+  if(!movies.length) throw 'Movies array is Empty';/* this line literally translates to, if there are NO(!) movies listed/or found 
+  inside the container that was gifted, send out an alert (throw) the messages stating ain't nothing there! "Movies Array is Empty*/
+  return movies.some((movie)=> movie.rated===rating // this line literally takes care of "checking' if Any movie has 
+  //a rating. Its important to realize that the keyword "entry", or argument, 
+  //says the keyword rating WILL default to a "G" rating. So if none other precise rating is given it will look for G rating.  
+  /*Line 66 says, look over this list, and give us an outcome or what you find, 
+  in this case you put a ("return") in front of what you want to send back after you check.
+  "movies.some === tells you the way you're gonna approach the search, then (movie) is the list of things found inside, => this say now DO this! 
+  movie.rated (notice how its NOT "movies".rated its MOVIE.rated this is saying look at EACH item on that list one by one) and it will ""===" the "rating" given.  
+  Then you give us those results.  Note rating given DEFAULT is rated G" */
+  
+  )
+};
 
 /**
  * findById()
@@ -68,7 +91,26 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+    function findById(movies, id) {
+      if (movies.length === 0) throw  "There are no movies"; // 
+      // line 95 checking ova the entire 'length" of the list (movies.lenght ) to see if there are NO movies listed
+      // if nothing send an error message (throw) to say "nothing is listed" 
+    
+     
+    
+     const Found = movies.find((movie) => {
+      // turned line 101 into a variable because if we return here we would not be able to 
+      //have line 108
+     return movie.imdbID === id})
+     // line 104 is literally saying while you are looking through the each item on the list.  
+     // Hence line 97, the find method, tells you how to approach and the "movie" represents the individual item
+     // to look at. 
+     return Found || null
+    /* line 108 return (says send this information back) Found || null translates to in javascript {Object|Error|null} The movie object with the matching `imdbID`. 
+    In laymen terms, its saying there is NO MOVIE with this given ID!*/
+    
+    
+    };
 
 /**
  * filterByGenre()
@@ -92,8 +134,22 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+    function filterByGenre(movies, genre) {
 
+
+      if (movies.length === 0) throw  "There are no movies";
+    
+    // line 140 tells us how to approach the list.  How we are going to solve the problem, 
+    // line 144 sends infor regarding us to filter through the movie elments. 
+       return movies.filter((movie)=>{
+        movie.genre.toLowerCase().includes(movie.genre.toLowerCase())
+    // line 145 movie.genre on movie.js is a list of genre's, these are case sensitive 
+    // filter already creates a new array
+    // line 145 is saying gather information of genre, put it all to lower case.  then see 
+    // if the genre we are looking for is included on the list hence .includes(genre.toLowerCase())
+      })
+    
+    }
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
  * -----------------------------
@@ -118,7 +174,24 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if(!movies.length) throw 'Movies array is Empty';
+      
+   // line 182 say approach solving the problem using a specific method.  
+   //line 182 is filtering for a specific movie
+   return movies.filter((movie)=>{
+   // line 187 is the slice method on a string, it is 20 June 2000 (hence 7 spaces beginning count at 0=2
+   // 1=0, J=3, U=4, N=5, E = 6 " "= 7 then we are left with year 2000
+   // line 184 is saying if (year less then of equal to given year), its written in javascript as
+   //if (movie.released.slice(7) <= year) then give us the 'movies"
+   if (movie.released.slice(7) <= year){
+    return movies
+   }} // this is the closing bracket
+    /* line 187 is literally saying find movies released  
+    less then (current) or equal to year given which is 2000 */
+   )
+     
+ };
 
 /**
  * checkMinMetascores()
@@ -134,8 +207,15 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+ function checkMinMetascores(movies, metascore) {
+ 
 
+  if(!movies.length) throw 'Movies array is Empty';
+
+// line 
+  return movies.every((movie)=> movie.metascore >= metascore);
+  
+};
 /**
  * getRottenTomatoesScoreByMovie()
  * -----------------------------
@@ -160,8 +240,21 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
-
+    function getRottenTomatoesScoreByMovie(movies) {
+      if(!movies.length) throw 'Movies array is Empty';
+    
+      
+        //  return movies.map((movie)=> {
+        //   return {
+        //     [movie.title]: movie.ratings.find(rating => 
+        //     ratings.source === 'Rotten Tomatoes')
+        //   .value}}
+        // )
+        movies.map(movie => {return {[movie.title]: movie.ratings.find(rating => rating.source === "Rotten Tomatoes").value}})
+    
+    
+      };
+      
 // Do not change anything below this line.
 module.exports = {
   getAllMovieTitles,
