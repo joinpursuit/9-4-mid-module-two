@@ -94,10 +94,13 @@ function findById(movies, id) {
 // let findThatMovie = movies.find(movie =>{
 //   return findThatMovie.imdbID === id 
 // })
-//   return findThatMovie === 0 ? null : findThatMovie;
-id(movies.length)
+//   return findThatMovie === 0 ? null : findingNemo;
+
+if(!movies.length)
+  throw 'Error. No movies found!';  
+
 let findThatMovie = movies.find((movie) => movie.imdbID === id);
-return !findThatMovie ? null : findThatMovie;
+  return !findThatMovie ? null : findThatMovie;
 }
 
 /**
