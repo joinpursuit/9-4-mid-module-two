@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -214,7 +215,14 @@ function checkMinMetascores(movies, metascore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  // If "movies" array is empty, throws error string.
+  if (movies.length === 0) {
+    throw "Movies array is empty.";
+  }
+  // Looks for a rating source with .source property equal to "Rotten Tomatoes" and obtains the corresponding value.  Maps that onto an object.
+  return movies.map(movie => ({[movie.title] : movie.ratings.find(ratingSource => ratingSource.source === "Rotten Tomatoes").value}));
+}
 
 // Do not change anything below this line.
 module.exports = {
