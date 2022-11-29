@@ -65,7 +65,7 @@ function checkIfAnyMovieHasRating(movies, rated = 'G') {
     // ✕ should return `false` if any movie in the list has the given rating 
     // ✕ should dynamically change depending on the movies inputted
     // ✕ if no rating is passed, the default should be 'G'
-     
+
   if(movies.length === 0) {
     throw 'There are no movies listed.';
   }
@@ -90,7 +90,15 @@ function checkIfAnyMovieHasRating(movies, rated = 'G') {
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+// let findThatMovie = movies.find(movie =>{
+//   return findThatMovie.imdbID === id 
+// })
+//   return findThatMovie === 0 ? null : findThatMovie;
+id(movies.length)
+let findThatMovie = movies.find((movie) => movie.imdbID === id);
+return !findThatMovie ? null : findThatMovie;
+}
 
 /**
  * filterByGenre()
