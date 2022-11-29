@@ -125,7 +125,16 @@ let findThatMovie = movies.find((movie) => movie.imdbID === id);
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  // try to LowerCase()
+  // loop, throw
+  if(!movies.length) {
+    throw "For the millionth time, there are no movies listed!."
+  };
+  return movies.filter((movie) => movie.genre
+    .toLowerCase().includes
+    (genre.toLowerCase()));
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
