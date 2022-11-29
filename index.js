@@ -171,6 +171,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
 function checkMinMetascores(movies, metascore) {
   // Error catch if movies array is empty
   if (movies.length == 0) throw 'ERROR: No movies.';
+  // Using every, we are checking to see if each movies metascore, is greater than the given metascore param.
   return movies.every(movie => movie.metascore >= metascore);
 }
 
@@ -201,6 +202,9 @@ function checkMinMetascores(movies, metascore) {
 function getRottenTomatoesScoreByMovie(movies) {
   // Error catch if movies array is empty
   if (movies.length == 0) throw 'ERROR: No movies.';
+  // Here we are iterating through each element of the movies array using map.
+  // We are then creating a new bucket and using find to look through EACH movies ratings array and finding the one whose source is Rotten Tomatoes.
+  // Finally, we are returning the movie title and the rating of our found Rotten Tomatoes rating to create a new object.ƒ
   return movies.map(movie => {
     let rottenRating = movie.ratings.find((rating) => rating.source === 'Rotten Tomatoes');
     return { [movie.title]: rottenRating.value };
