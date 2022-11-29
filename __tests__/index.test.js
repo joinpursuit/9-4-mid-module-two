@@ -120,7 +120,7 @@ describe.skip("findById()", () => {
   });
 });
 
-describe.skip("filterByGenre()", () => {
+describe("filterByGenre()", () => {
   test("should use the `.filter()` method", () => {
     const text = filterByGenre.toString();
     expect(text).toMatch(/\.filter\(.*\)/s);
@@ -181,7 +181,7 @@ describe.skip("filterByGenre()", () => {
   });
 });
 
-describe.skip("checkMinMetascores()", () => {
+describe("checkMinMetascores()", () => {
   test("should use the `.every()` method", () => {
     const text = checkMinMetascores.toString();
     expect(text).toMatch(/\.every\(.*\)/s);
@@ -204,7 +204,7 @@ describe.skip("checkMinMetascores()", () => {
   });
 });
 
-describe.skip("getAllMoviesReleasedAtOrBeforeYear()", () => {
+describe("getAllMoviesReleasedAtOrBeforeYear()", () => {
   test("should use the `.filter()` method", () => {
     const text = filterByGenre.toString();
     expect(text).toMatch(/\.filter\(.*\)/s);
