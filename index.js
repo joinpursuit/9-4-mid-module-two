@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -30,7 +31,14 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+
+function getAllMovieTitles(movies) {
+  if (!movies.length){
+    throw `there aren't any movies`
+  }
+  let titles = movies.map((x) => x.title)
+  return titles
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +58,13 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating= "G") {
+  if (!movies.length){
+    throw `there aren't any movies`
+  } 
+  let verifRate = movies.some((x) => x.rated === rating)
+  return verifRate
+}
 
 /**
  * findById()
@@ -68,7 +82,18 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, ide) {
+  if (!movies.length){
+    throw `THERE AREN'T ANY MOVIES`
+  }
+  let y = movies.find((x) => x.imdbID === ide)
+
+  if (y){
+    return y
+  } else {
+    return null
+  }
+}
 
 /**
  * filterByGenre()
@@ -92,7 +117,21 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, gen) {
+  let z = gen.toLowerCase();
+  let g;
+  if (movies.length === 0){
+    throw `there aren't any movies`
+  }
+  let y = movies.filter((x) => {
+g = x.genre.toLowerCase()
+if (g.includes(z)){
+  return x
+}
+  })
+  //console.log (z)
+  return y
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +157,16 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, dat) {
+  let year
+  let y = movies.filter((x) => {
+   year = Number(x.released.slice(7))
+  if (year <= dat){
+    return x.title
+  }
+  })
+  return y
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +182,10 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, scor) {
+  let y = movies.every((x) => x.metascore >= scor)
+  return y
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +211,20 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  //let obj = {}
+  //let newArr = []
+  if (!movies.length){
+    throw `there aren't any movies`
+  }
+  let y = movies.map((x) => {
+    let z = x.ratings.find((c) => c.source === "Rotten Tomatoes")
+    return ({[x.title]: z.value})
+  })
+  //obj = newArr.map((x) => {return {[x.title]: x.ratings.value}})
+
+  return y
+}
 
 // Do not change anything below this line.
 module.exports = {
