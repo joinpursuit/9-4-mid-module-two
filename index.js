@@ -169,7 +169,8 @@ function checkMinMetascores(movies, metascore) {
 /**
  * getRottenTomatoesScoreByMovie()
  * -----------------------------
- * Transform each movie, returning an array of objects where the key is the title of the movie and the value is the score received from Rotten Tomatoes. If there are no movies, throw an error with a message.
+ * Transform each movie, returning an array of objects where the key is the title of the movie and the 
+ * value is the score received from Rotten Tomatoes. If there are no movies, throw an error with a message.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
  * @returns {Object[]|Error} An array of movie objects where the key is the movie title and the value is the score received from Rotten Tomatoes.
  * 
@@ -190,7 +191,13 @@ function checkMinMetascores(movies, metascore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (movies.length == 0) throw 'There are no movies!' 
+  return movies.map((movie) => {
+    const movRat = movie.ratings.find((rating) => rating.source == 'Rotten Tomatoes')
+    return {[movie.title]: movRat.value}
+  })
+}
 
 // Do not change anything below this line.
 module.exports = {

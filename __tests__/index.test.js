@@ -181,7 +181,7 @@ describe("filterByGenre()", () => {
   });
 });
 
-describe.only("checkMinMetascores()", () => {
+describe("checkMinMetascores()", () => {
   test("should use the `.every()` method", () => {
     const text = checkMinMetascores.toString();
     expect(text).toMatch(/\.every\(.*\)/s);
@@ -249,7 +249,7 @@ describe("getAllMoviesReleasedAtOrBeforeYear()", () => {
   });
 });
 
-describe("getRottenTomatoesScoreByMovie()", () => {
+describe.only("getRottenTomatoesScoreByMovie()", () => {
   test("should use the `.map()` method", () => {
     const text = getRottenTomatoesScoreByMovie.toString();
     expect(text).toMatch(/\.map\(.*\)/s);
