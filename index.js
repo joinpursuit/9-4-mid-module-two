@@ -30,7 +30,11 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  //error message:
+  if (movies.length === 0) throw "There's no movie";
+  return result = movies.map(movie => movie.title);
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +54,10 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, str = "G") {
+  if (movies.length === 0) throw "There's no movie";
+  return movies.some(movie => movie.rated === str)
+}
 
 /**
  * findById()
@@ -68,7 +75,15 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, str) {
+  if (movies.length === 0) throw "There's no movie";
+
+  let result = movies.find(movie => movie.imdbID === str);
+  if (result === undefined) {
+    result = null;
+  }
+  return result;
+}
 
 /**
  * filterByGenre()
@@ -92,7 +107,33 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, str) {
+  if (movies.length === 0) throw "There's no movie";
+  return movies.filter(movie => {
+    if (movie.genre.toLowerCase().includes(str.toLowerCase())) {
+      return movie;
+    }
+  })
+}
+
+/**
+ * checkMinMetascores()
+ * -----------------------------
+ * Returns either true or false depending whether all movies have a minimum metascore. If the movie array is empty, throw an error with a message.
+ * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
+ * @param {number} metascore - A minimum metascore number. (e.g. 80)
+ * @returns {Boolean|Error} A boolean
+ *
+ * NOTE: You must use the .every()` method.
+ *
+ * EXAMPLE:
+ *  checkMinMetascores(movies, 90));
+ *  //>  false
+ */
+function checkMinMetascores(movies, minimum) {
+  if (movies.length === 0) throw "There's no movie";
+  return movies.every(movie => movie.metascore > minimum);
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,23 +159,14 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
-
-/**
- * checkMinMetascores()
- * -----------------------------
- * Returns either true or false depending whether all movies have a minimum metascore. If the movie array is empty, throw an error with a message.
- * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
- * @param {number} metascore - A minimum metascore number. (e.g. 80)
- * @returns {Boolean|Error} A boolean
- *
- * NOTE: You must use the .every()` method.
- *
- * EXAMPLE:
- *  checkMinMetascores(movies, 90));
- *  //>  false
- */
-function checkMinMetascores() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (movies.length === 0) throw "There's no movie";
+  return movies.filter(movie => {
+    if (movie.released.slice(-4) <= year) {
+      return movie;
+    }
+  })
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +192,20 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (movies.length === 0) throw "There's no movie";
+  return movies.map(movie => {
+    // movies.find(movie => {
+    //   for (let rating of movie.ratings) {
+    //     if (rating.source === "Rotten Tomatoes") {
+    //       return {[movie.title]: rating.value}
+    //     }
+    //   }
+    // })
+    const rating = movie.ratings.find(rating => rating.source === "Rotten Tomatoes")
+    return {[movie.title]: rating.value};
+  })
+}
 
 // Do not change anything below this line.
 module.exports = {
