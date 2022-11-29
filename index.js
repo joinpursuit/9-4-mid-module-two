@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -150,7 +151,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
    // Error catch if movies array is empty
    if (movies.length == 0) throw 'ERROR: No movies.';
   //  Here I am looking at each movies released string, slicing it 4 from the end(which gives us just the year).  Then, bc it was a string, I am turning that into a number, and comparing that with the given year param.  I tried doing this in a longer and more complicated way using split and join on the released string, but it kept failing repeatedly.  Once I took a step back I realized I could do all of that using slice and Number chained together instead.
-   return movies.filter(movie => Number(movie.released.slice(-4)) <= year)
+   return movies.filter(movie => Number(movie.released.slice(-4)) <= year);
 }
 
 /**
@@ -167,9 +168,10 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {
+function checkMinMetascores(movies, metascore) {
    // Error catch if movies array is empty
    if (movies.length == 0) throw 'ERROR: No movies.';
+   return movies.every(movie => Number(movie.metascore) >= metascore);
 }
 
 /**
