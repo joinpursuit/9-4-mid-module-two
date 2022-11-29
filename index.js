@@ -234,7 +234,23 @@ try {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if(!movies.length){
+    throw "movies array is empty"
+  }
+try {
+  let arr = movies.map((element) => {
+    let found = element.ratings.find((element) => {
+      if (element.source === "Rotten Tomatoes"){
+        return element
+  }})
+    return {[element.title]:found.value}
+    })
+   return arr
+} catch (error) {
+  console.error(error)
+  }
+}
 
 // Do not change anything below this line.
 module.exports = {
