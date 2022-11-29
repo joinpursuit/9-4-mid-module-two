@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -30,7 +31,13 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  // using throw if the the 'movies' array is empty 
+  if (!movies.length)
+  throw `error`
+  //creating a new array from movies w/ map method, 'movie' new array and we use dot notation to get all movie titles 
+  return movies.map((movie) => movie.title)
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,8 +57,17 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
-
+function checkIfAnyMovieHasRating(movies, rating="G") {
+  if (!movies.length){
+  throw `error`
+}//throwing error if a movie doesnt have a rating itll revert to 'G' as a default
+  if (!rating){
+    throw `G`
+  }
+  // using 'some' method to see if 'rated' strictly equals rating, if it does itll return true 
+  let hasRating = movies.some(movie => movie.rated === rating)
+  return hasRating
+}
 /**
  * findById()
  * -----------------------------
@@ -68,7 +84,17 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if(!movies.length){
+    throw `error`
+  }// our find variable now has 'find' method along w/ a function to see if the movie array has a matching 'id'
+  let find = movies.find(movie => movie.imdbID === id)
+  // if our 'find' variable holding the function above does not have an id it'll return undefined
+  if (find === undefined){
+    return null
+  }
+  return find
+}
 
 /**
  * filterByGenre()
@@ -92,7 +118,12 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies,type) {
+  if(!movies.length){
+    throw `error`
+  }//filtering the type of genre in the movies and to make it easier to search we lowercase the key and value in the object 
+  return movies.filter(({genre}) => genre.toLowerCase().includes(type.toLowerCase()))
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +149,12 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
+  if(!movies.length){
+    throw `error`
+  }  // filter every 'movie' object and we use slice to only get the year and use our comparison method to check if was equal to or less than the given year. use Number 'function' to make sure it converts strings to number if any and compare afterwards               
+  return (movies.filter((movie) => Number(movie.released.slice(6)) <= year))
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +170,13 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, score) {
+  if (!movies.length){
+    throw `error`
+  }
+   // every method goes through the object of 'metascore' and compares that its above the 'given' score 
+  return movies.every(({metascore}) => metascore > score)
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +202,12 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (!movies.length){ 
+  throw `error`
+  // creating a new array with 'map' method, our new array 'movie'  now has the keys and values of titles and scores 
+} return movies.map(movie => ({[movie.title] : movie.ratings.find(element => element.source === `Rotten Tomatoes`).value}))
+}
 
 // Do not change anything below this line.
 module.exports = {
