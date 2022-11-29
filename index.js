@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -30,7 +31,14 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  // If "movies" array is empty, throws error string.
+  if (movies.length === 0) {
+    throw "Movies array is empty.";
+  }
+  // Uses .map to return titles.
+  return movies.map(movie => movie.title);
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +58,19 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+// rating parameter default "G".
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+  // If "movies" array is empty, throws error string.
+  if (movies.length === 0) {
+    throw "Movies array is empty.";
+  }
+  // If some movie .rated property equals rating, returns true.
+  if (movies.some(movie => movie.rated === rating)) {
+    return true;
+  }
+  // If the "if" conditional above doesn't trigger, returns false.
+  return false;
+}
 
 /**
  * findById()
@@ -68,7 +88,18 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+    // If "movies" array is empty, throws error string.
+    if (movies.length === 0) {
+      throw "Movies array is empty.";
+    }
+    // If "movies" array has a movie with .imdbID property equal to id argument, returns movie.
+    if (movies.find(movie => movie.imdbID === id)) {
+      return movies.find(movie => movie.imdbID === id);
+    }
+    // if "if" conditional above does not trigger, returns null.
+    return null;
+}
 
 /**
  * filterByGenre()
@@ -92,7 +123,18 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  // If "movies" array is empty, throws error string.
+  if (movies.length === 0) {
+    throw "Movies array is empty.";
+  }
+  // if movies array has one or more movies that have a genre which .toLowerCase is equal to the genre argument .toLowerCase, returns filtered array.
+  if (movies.filter(movie => movie.genre.toLowerCase().includes(genre.toLowerCase()))) {
+    return movies.filter(movie => movie.genre.toLowerCase().includes(genre.toLowerCase()));
+  }
+  // if "if" conditional above does not trigger, returns [].
+  return [];
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +160,13 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  // If "movies" array is empty, throws error string.
+  if (movies.length === 0) {
+    throw "Movies array is empty.";
+  }
+  return movies.filter(movie => Number(movie.released.slice(movie.released.length - 4)) <= year);
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +182,14 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  // If "movies" array is empty, throws error string.
+  if (movies.length === 0) {
+    throw "Movies array is empty.";
+  }
+  // If every movie has a metascore that exceeds the metascore argument, returns true, otherwise returns false.
+  return movies.every(movie => Number(movie.metascore) >= metascore);
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +215,14 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  // If "movies" array is empty, throws error string.
+  if (movies.length === 0) {
+    throw "Movies array is empty.";
+  }
+  // Looks for a rating source with .source property equal to "Rotten Tomatoes" and obtains the corresponding value.  Maps that onto an object.
+  return movies.map(movie => ({[movie.title] : movie.ratings.find(ratingSource => ratingSource.source === "Rotten Tomatoes").value}));
+}
 
 // Do not change anything below this line.
 module.exports = {
