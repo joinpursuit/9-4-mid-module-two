@@ -112,7 +112,15 @@ return foundId || null
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+    function filterByGenre(movies, genre) {
+      if (!movies.length) {
+        throw `error`
+      }//create custom error if no movies
+      const formatGenreNames = (movie) =>
+        movie.genre.toLowerCase().includes(genre.toLowerCase())
+    //go through each movie's genre and lowercase all genre characters
+      return movies.filter(formatGenreNames)
+    }//using filter,return all movies of specified genre with the use of formatGenreNames variable
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
