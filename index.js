@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -30,7 +31,16 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+const getAllMovieTitles = (movies) => {
+  if (!movies.length) {
+    throw "No movies"
+  }
+  try {
+    return movies.map((movie) => movie.title)
+  } catch (Error) {
+    console.log(Error)
+  }
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,8 +60,16 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
-
+const checkIfAnyMovieHasRating = (movies, rating = "G") => {
+  if (!movies.length) {
+    throw "No rating"
+  }
+  try {
+    return movies.some((movie) => movie.rated === rating)
+  } catch (Error) {
+   console.log(Error)
+  }
+}
 /**
  * findById()
  * -----------------------------
@@ -68,7 +86,16 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+const findById = (movies, id) => {
+  if (!movies.length) {
+    throw "No movies"
+  }
+  try {
+    return movies.find((movie) => movie.imdbID === id) || null
+  } catch (Error) {
+    console.log(Error)
+  }
+}
 
 /**
  * filterByGenre()
@@ -92,7 +119,20 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+const filterByGenre = (movies, genre) => {
+  if (!movies.length) {
+    throw "No movies genre"
+  }
+  try {
+    return (
+      movies.filter((movie) =>
+        movie.genre.toLowerCase().includes(genre.toLowerCase())
+      ) || []
+    )
+  } catch (Error) {
+    console.log(Error)
+  }
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +158,11 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+const getAllMoviesReleasedAtOrBeforeYear = (movies,year) => {
+  if (!movies.length) {
+    throw "No movies in that year"
+  }
+}
 
 /**
  * checkMinMetascores()
