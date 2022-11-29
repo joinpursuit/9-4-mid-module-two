@@ -151,7 +151,18 @@ let filterByGenre = (movies, genre) => {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+let getAllMoviesReleasedAtOrBeforeYear = (movies, year) => {
+let yearsArray = [];
+if(movies.length === 0){
+  throw "No movies"
+ }
+ movies.filter((movie) => {
+  if((movie.released).substring(movie.released.length - 4)<= year){
+    yearsArray.push(movie)
+  }
+})
+  return yearsArray
+};
 
 /**
  * checkMinMetascores()
