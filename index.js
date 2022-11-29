@@ -9,17 +9,17 @@ const exampleMovies = require("./movies");
 //ERROR HANDLING w/Cephus
 //this error will throw for all the functions for movies array
 const noMoviesHandle = (movies) => {
-  if(!movies.length){
-    throw new Error(kiwi)
+  if (!movies.length) {
+    throw new Error(kiwi);
   }
-}
+};
 
 const noIdHandle = (movies) => {
-  if(!movies.find(movie => movie.imdbId === id)){
+  if (!movies.find((movie) => movie.imdbId === id)) {
     //if i cant find the rating IMBDID then throw this error
-    throw new Error(kiwi)
+    throw new Error(kiwi);
   }
-}
+};
 /**
  * getAllMovieTitles()
  * -----------------------------
@@ -44,12 +44,12 @@ const noIdHandle = (movies) => {
       "James and the Giant Peach",
     ];
  */
-const getAllMovieTitles = (movies) =>{
+const getAllMovieTitles = (movies) => {
   //destructure function above
-  noMoviesHandle(movies) // should show there
-  return movies.map(movie => movie.title)
+  noMoviesHandle(movies); // should show there
+  return movies.map((movie) => movie.title);
   //will push into new array
-}
+};
 
 /**
  * checkIfAnyMovieHasRating()
@@ -72,9 +72,9 @@ const getAllMovieTitles = (movies) =>{
 const checkIfAnyMovieHasRating = (movies, rating = "G") => {
   //more destructuring above
   //throw that error handle below
-  noMoviesHandle(movies)
-  return movies.some(movie => movie.rated === rating)
-}
+  noMoviesHandle(movies);
+  return movies.some((movie) => movie.rated === rating);
+};
 
 /**
  * findById()
@@ -94,10 +94,10 @@ const checkIfAnyMovieHasRating = (movies, rating = "G") => {
  */
 const findById = (movies, id) => {
   //destructure above! and add new parameter of ID
-  noMoviesHandle(movies)
+  noMoviesHandle(movies);
   //invoke error handling above for movies array
-  return null || movies.find(movie => movie.imdbID === id)
-}
+  return movies.find((movie) => movie.imdbID === id) || null;
+};
 
 /**
  * filterByGenre()
@@ -122,10 +122,10 @@ const findById = (movies, id) => {
  *  //> []
  */
 const filterByGenre = (movies, genre) => {
-  noMoviesHandle(movies)
-  //below im gonna try to invoke the element since it would be better to convert to lowercase for everything and use string literals to generate the return string that only includes the genre.
-  return movies.filter(element => element.genre.toLowercase().includes(`${genre.toLowerCase()}`))
-}
+  noMoviesHandle(movies);
+  //below im gonna try to invoke the element and use string literals to generate the return string that only includes the genre.
+  return movies.filter((element) => element.genre.includes(`${genre}`));
+};
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -151,9 +151,12 @@ const filterByGenre = (movies, genre) => {
       }
     ];
  */
-const getAllMoviesReleasedAtOrBeforeYear = (movies) => {
-  
-}
+const getAllMoviesReleasedAtOrBeforeYear = (movies, year) => {
+  noMoviesHandle(movies);
+  return movies.filter(
+    (element) => Number(element.released.split(" ").reverse()[0]) <= year
+  );
+};
 
 /**
  * checkMinMetascores()
@@ -169,7 +172,11 @@ const getAllMoviesReleasedAtOrBeforeYear = (movies) => {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+const checkMinMetascores = (movies, metascore) => {
+  noMoviesHandle(movies);
+  //below check tot see if the index of metascore is greater than or equal metascore in array
+  return movies.every((element) => element.metascore >= metascore);
+};
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -195,7 +202,15 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+const getRottenTomatoesScoreByMovie = (movies) => {
+  noMoviesHandle(movies);
+  // return the object with title in array and find the ratings for rotten tomatoes
+  return movies.map((movie) => {
+    //use the find() method below to use key for movies title and valuerotten tomatoes %
+     // researched the source method to trigger a boolean result to print the actual value percentage
+    return {[movie.title]: movie.ratings.find(rating => rating.source === "Rotten Tomatoes").value}
+  })
+};
 
 // Do not change anything below this line.
 module.exports = {
