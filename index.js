@@ -146,7 +146,12 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() { }
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+   // Error catch if movies array is empty
+   if (movies.length == 0) throw 'ERROR: No movies.';
+  //  Here I am looking at each movies released string, slicing it 4 from the end(which gives us just the year).  Then, bc it was a string, I am turning that into a number, and comparing that with the given year param.  I tried doing this in a longer and more complicated way using split and join on the released string, but it kept failing repeatedly.  Once I took a step back I realized I could do all of that using slice and Number chained together instead.
+   return movies.filter(movie => Number(movie.released.slice(-4)) <= year)
+}
 
 /**
  * checkMinMetascores()
@@ -162,7 +167,10 @@ function getAllMoviesReleasedAtOrBeforeYear() { }
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() { }
+function checkMinMetascores() {
+   // Error catch if movies array is empty
+   if (movies.length == 0) throw 'ERROR: No movies.';
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -188,7 +196,10 @@ function checkMinMetascores() { }
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() { }
+function getRottenTomatoesScoreByMovie() {
+   // Error catch if movies array is empty
+   if (movies.length == 0) throw 'ERROR: No movies.';
+}
 
 // Do not change anything below this line.
 module.exports = {
