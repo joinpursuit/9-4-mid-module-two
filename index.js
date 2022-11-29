@@ -164,7 +164,18 @@ const exampleMovies = require("./movies");
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+ function checkMinMetascores(movies, metascore) {
+  if (movies.length === 0) 
+    throw "error";
+    let checkMin = movies.every((movie) => {
+      if (movie.metascore > metascore) {
+        return true;        
+      } else {
+        return false;
+      }
+    });
+    return checkMin;
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
