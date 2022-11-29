@@ -121,7 +121,11 @@ const findById = (movies, id) => {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+const filterByGenre = (movies, genre) => {
+  noMoviesHandle(movies)
+  //below im gonna try to invoke the element since it would be better to convert to lowercase for everything and use string literals to generate the return string that only includes the genre.
+  return movies.filter(element => element.genre.toLowercase().includes(`${genre.toLowerCase()}`))
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -147,7 +151,9 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+const getAllMoviesReleasedAtOrBeforeYear = (movies) => {
+  
+}
 
 /**
  * checkMinMetascores()
