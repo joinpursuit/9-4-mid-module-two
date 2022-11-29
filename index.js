@@ -124,7 +124,7 @@ const findById = (movies, id) => {
 const filterByGenre = (movies, genre) => {
   noMoviesHandle(movies);
   //below im gonna try to invoke the element and use string literals to generate the return string that only includes the genre.
-  return movies.filter((element) => element.genre.includes(`${genre}`));
+  return movies.filter((element) => element.genre.toLowerCase().includes(`${genre.toLowerCase()}`));
 };
 
 /**
