@@ -181,7 +181,7 @@ describe("filterByGenre()", () => {
   });
 });
 
-describe("checkMinMetascores()", () => {
+describe.only("checkMinMetascores()", () => {
   test("should use the `.every()` method", () => {
     const text = checkMinMetascores.toString();
     expect(text).toMatch(/\.every\(.*\)/s);
