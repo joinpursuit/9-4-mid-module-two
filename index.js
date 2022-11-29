@@ -159,7 +159,11 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   if (movies.length === 0) {
     throw('Error')
   }
-  return movies.filter(movie => movie.released.includes(year))
+  let moviesByYear = movies.filter((movie) => {
+    return movie.released.substring(movie.released.length - 4) <= year;
+  });
+
+  return moviesByYear;
 }
 
 /**
