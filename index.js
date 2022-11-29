@@ -77,7 +77,18 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if (movies.length === 0) throw 'Error';
+  let movieId = movies.find(movie => {
+    if (movie.imdbID === id) {
+      return movie;
+    };
+  });
+  if (movieId === undefined) {
+    return null;
+  };
+  return movieId;
+}
 
 /**
  * filterByGenre()
