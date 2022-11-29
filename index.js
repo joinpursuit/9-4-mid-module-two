@@ -30,7 +30,13 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+    function getAllMovieTitles(movies) {
+      if (movies.length === 0) 
+        throw "error"
+        return movies.map((movie) => {
+          return movie.title;
+        });
+    } 
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +56,13 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+ function checkIfAnyMovieHasRating(movies, rating="G") {
+  if (movies.length === 0) 
+  throw "error";
+  return movies.some((movie) => {
+    return movie.rated === rating;
+  });
+} 
 
 /**
  * findById()
@@ -68,7 +80,13 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+    function findById(movies, id) {
+      if (movies.length === 0) 
+        throw "error";
+        return movies.find((movie) => {
+          return movie.imdbID === id || null;
+        });
+    }
 
 /**
  * filterByGenre()
@@ -92,7 +110,13 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+    function filterByGenre(movies, genre) {
+      if (movies.length === 0) 
+        throw "error";
+        return movies.filter((movie) => {
+          return movie.genre.toLowerCase().includes(genre.toLowerCase())
+        });
+    }
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +142,13 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+    function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+      if (movies.length === 0) 
+        throw "error";
+        return movies.filter((movie) => {
+          return movie.released.split(" ")[2] <= year;
+      });
+    }
 
 /**
  * checkMinMetascores()
@@ -134,7 +164,18 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+ function checkMinMetascores(movies, metascore) {
+  if (movies.length === 0) 
+    throw "error";
+    let checkMin = movies.every((movie) => {
+      if (movie.metascore > metascore) {
+        return true;        
+      } else {
+        return false;
+      }
+    });
+    return checkMin;
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +201,20 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+    function getRottenTomatoesScoreByMovie(movies) {
+      if (movies.length === 0) 
+      throw "error";
+      let rottenScore = movies.find((movie) => {
+        if(movie.ratings === "Rotten Tomatoes") {
+          return movie.ratings;
+        }
+        // I have to access the property `source` in the property `rating` to return the key/value pair.
+        return movies.map((movie) => {
+          return {[movie.title]: movie.ratings}
+        })
+      });
+    }
+    
 
 // Do not change anything below this line.
 module.exports = {
