@@ -59,10 +59,10 @@ function checkIfAnyMovieHasRating(movies, rating="G") {
   if (movies.length === 0){
     throw ('Error')
   } 
-   let result = movies.some((movie) => {
+   let myRes = movies.some((movie) => {
     return movie.rated === rating;
    });
-   return result
+   return myRes
   }
 
 /**
