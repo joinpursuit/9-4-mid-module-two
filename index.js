@@ -30,7 +30,13 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+const movieTitle = movies.map((movie) => movie.title) //turn function with variable, access and iterate through all the movie titles with map. and it will input all movie titles into an array
+  if (!movies.length) {
+    throw 'error. No movies'
+  } //create my own custom error with throw if no movies
+  return movieTitle
+} //return variable of movieTitle variable to the end
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +56,14 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies,rating="G") {
+  const movieRating = movies.some((movie) => movie.rated === rating)
+  //create movieRating variable to use arrow function to iterate through each movie with use of parameters and access all ratings with strictly equals to rating. some() provides boolean; true = given rating, false = no movie
+  if (!movies.length) {
+    throw 'error. No movies'
+  }//create my own custom error with throw if no movies
+  return movieRating
+}//return first variable of movieRating
 
 /**
  * findById()
@@ -68,7 +81,14 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies,id) {
+if (!movies.length) {
+  throw 'error. No movies'
+}//add custom error throw if no movies
+const foundId = movies.find((movie) => movie.imdbID === id)
+//.find searches for specific item in the array. It access in the array, the imdbID strictly equal to the id parameter. In return, returns entire movie with IMDB ID. If no movie found, it returns null
+return foundId || null
+}
 
 /**
  * filterByGenre()
@@ -92,7 +112,15 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+    function filterByGenre(movies, genre) {
+      if (!movies.length) {
+        throw `error`
+      }//create custom error if no movies
+      const formatGenreNames = (movie) =>
+        movie.genre.toLowerCase().includes(genre.toLowerCase())
+    //go through each movie's genre and lowercase all genre characters
+      return movies.filter(formatGenreNames)
+    }//using filter,return all movies of specified genre with the use of formatGenreNames variable
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +146,14 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
+  if (!movies.length) {
+    throw 'error'
+  }//create custom error for no movies
+let releasedMovies = movies.filter((movie) => movie.released.slice(-4) <= year)// create variable releasedMovies to use filter method through the movies then access the date of movies, using only the year so slice -4, less than or equal to
+return releasedMovies
+}//return the movies filtered
+
 
 /**
  * checkMinMetascores()
@@ -134,7 +169,17 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies,metascore) {
+  if (!movies.length) {
+    throw 'Error. There are no movies.'
+  }//custom error, there are no movies
+  return movies.every((movie) => {
+    //.every() goes through each movie and makes sure it meets the condition of:
+    //true(all movies min metascore of least 60), 
+    //false(all movies min metascore of least 90)
+    return movie.metascore >= metascore
+  })//return accesses the metascore of each movie greater than equal to metascore parameter
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +205,20 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (!movies.length) {
+    throw 'error. No Movies.'
+  } //custom error, if no movies.
+  return movies.map((movie) => {
+    //go through each movie with map method and also creates an array. And create movieObject variable of empty object
+    movieObject = {}
+    //create variable of movies that use the ratings' source of rotten tomatoes with find method
+    let tomRating = movie.ratings.find((rating) => rating.source === "Rotten Tomatoes")
+    //create key, with the movie title and add value using variable tomRating and value from rotten tomatoes
+    movieObject[movie.title] = tomRating.value
+    return movieObject
+  }) //return array of objects of movie keys and their values
+}
 
 // Do not change anything below this line.
 module.exports = {
