@@ -81,7 +81,15 @@ function checkIfAnyMovieHasRating(movies, rating = 'G') {
       // Toy Story 4
     };
  */
-function findById() { }
+function findById(movies, id) {
+   // Error catch if movies array is empty
+   if (movies.length == 0) throw 'ERROR: No movies.';
+  //  Searching through movies array to see find the given id param within the movie.imbdID property
+   return movies.find(movie => {
+    return movie.imdbID === id;
+    // Normally find would return undefined if the given thing isnt found(when it finds it, its "truthy"), but by specifying a different "falsey" value, I am telling this functiuon to return 'null' instead of the normal 'undefined'
+   }) || null;
+}
 
 /**
  * filterByGenre()
