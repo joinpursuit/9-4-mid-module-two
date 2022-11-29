@@ -115,16 +115,15 @@ function checkIfAnyMovieHasRating(movies, rating="G") {
  */
 function findById(movies, imdbID) {
 //error handing for if there are no movies in the array
-  if(movies===[]) {
-    throw ("there are no movies in this array")
+  if(movies===[]) { 
+    throw ("there are no movies in this array");
   }
-//create a variable that consists of 
-  let theOne
-  theOne = movies.find(element => element.imdbID===imdbID)
-  if (theOne===false){return null}
-  return theOne
 
-
+  let theOne;
+  theOne = movies.find(element => element.imdbID===imdbID);
+  if (!theOne){
+    return null}
+  return theOne;
 }
 
 /**
@@ -213,10 +212,12 @@ function checkMinMetascores(movies, metascore) {
   const highScore = movies.every(element =>
     element.ratings[2][1]>=((metascore)/100))
   return highScore
+}
+
 //a variable is named that checks if every metacritic score in the given movie array is at least as large as the given metacritic score.
 //returns true or false
 //since metacritic scores are out of 100, the number given must be divided by 100.
-}
+
 
 /**
  * getRottenTomatoesScoreByMovie()
