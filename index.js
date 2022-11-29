@@ -32,7 +32,7 @@ const exampleMovies = require("./movies");
  */
 function getAllMovieTitles(movies) {
   //check if the movies array is empty
-  if (movies[0] === undefined){
+  if (movies[0] === undefined) {
     //throw the error message
     throw "There was no movie"
   }
@@ -61,7 +61,7 @@ function getAllMovieTitles(movies) {
  */
 function checkIfAnyMovieHasRating(movies, rating = "G") {
   //check if the movies array is empty
-  if (movies[0] === undefined){
+  if (movies[0] === undefined) {
     //throw the error message
     throw "There was no movie";
   }
@@ -88,14 +88,14 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
  */
 function findById(movies, id) {
   //check if the movies array is empty
-  if (movies[0] === undefined){
+  if (movies[0] === undefined) {
     //throw the error message
     throw "There was no movie";
   }
   //save the movie with the correct id in a new object
   const correctMovie = movies.find(movie => movie.imdbID === id)
   //check if the movie exists
-  if (!correctMovie){
+  if (!correctMovie) {
     return null;
   }
   return correctMovie;
@@ -125,7 +125,7 @@ function findById(movies, id) {
  */
 function filterByGenre(movies, genre) {
   //check if the movies array is empty
-  if (movies[0] === undefined){
+  if (movies[0] === undefined) {
     //throw the error message
     throw "There was no movie";
   }
@@ -161,7 +161,7 @@ function filterByGenre(movies, genre) {
  */
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   //check if the movies array is empty
-  if (movies[0] === undefined){
+  if (movies[0] === undefined) {
     //throw the error message
     throw "There was no movie";
   }
@@ -185,7 +185,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  */
 function checkMinMetascores(movies, metascore) {
   //check if the movies array is empty
-  if (movies[0] === undefined){
+  if (movies[0] === undefined) {
     //throw the error message
     throw "There was no movie";
   }
@@ -217,7 +217,18 @@ function checkMinMetascores(movies, metascore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  //check if the movies array is empty
+  if (movies[0] === undefined) {
+    //throw the error message
+    throw "There was no movie";
+  }
+  //return the new movie array 
+  return movies.map(function (movie) {
+    //return the new object with title as key, and rating as value
+    return { [movie.title]: movie.ratings.find(ratingType => ratingType.source === "Rotten Tomatoes").value }
+  });
+}
 
 // Do not change anything below this line.
 module.exports = {
