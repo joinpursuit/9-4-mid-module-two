@@ -82,17 +82,18 @@ function checkIfAnyMovieHasRating(movies, rating = 'G') {
  */
 function findById(movies, id) {
   if (movies.length == 0) throw 'There are no movies!' 
-  const idMatch = movies.find((movie) => movie.imdbID == id);
-  return idMatch || null;
+  return movies.find((movie) => movie.imdbID == id) || null;
 }
 
 /**
  * filterByGenre()
  * -----------------------------
- * Returns all movie objects with a matching genre. Case-insensitive. If the inputted `movies` array is empty, throw an error with a message. If no movies match the inputted `genre`, return `[]`.
+ * Returns all movie objects with a matching genre. Case-insensitive. If the inputted `movies` array is 
+ * empty, throw an error with a message. If no movies match the inputted `genre`, return `[]`.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
  * @param {string} genre - The genre of a movie. (e.g. "Fantasy")
- * @returns {Object[]|Error} An array of movies where at least one of the genres matches the `genre` inputted.
+ * @returns {Object[]|Error} An array of movies where at least one of the genres matches the `genre` 
+ * inputted.
  *
  * NOTE: You must use the `.filter()` method.
  * 
@@ -108,7 +109,14 @@ function findById(movies, id) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if (movies.length == 0) throw 'There are no movies!' 
+  genre = genre.toLowerCase();
+  return movies.filter((movie) => {
+    const genArr = movie.genre.toLowerCase().split(', ');
+    return genArr.includes(genre);
+  })
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
