@@ -5,7 +5,21 @@
 */
 const exampleMovies = require("./movies");
 // Do not change the line above.
+//  &&&&&&&&&&&&&
+//ERROR HANDLING w/Cephus
+//this error will throw for all the functions for movies array
+const noMoviesHandle = (movies) => {
+  if(!movies.length){
+    throw new Error(kiwi)
+  }
+}
 
+const noIdHandle = (movies) => {
+  if(!movies.find(movie => movie.imdbId === id)){
+    //if i cant find the rating IMBDID then throw this error
+    throw new Error(kiwi)
+  }
+}
 /**
  * getAllMovieTitles()
  * -----------------------------
@@ -30,7 +44,12 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+const getAllMovieTitles = (movies) =>{
+  //destructure function above
+  noMoviesHandle(movies) // should show there
+  return movies.map(movie => movie.title)
+  //will push into new array
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +69,12 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+const checkIfAnyMovieHasRating = (movies, rating = "G") => {
+  //more destructuring above
+  //throw that error handle below
+  noMoviesHandle(movies)
+  return movies.some(movie => movie.rated === rating)
+}
 
 /**
  * findById()
@@ -68,7 +92,12 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+const findById = (movies, id) => {
+  //destructure above! and add new parameter of ID
+  noMoviesHandle(movies)
+  //invoke error handling above for movies array
+  return null || movies.find(movie => movie.imdbID === id)
+}
 
 /**
  * filterByGenre()
