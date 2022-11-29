@@ -7,7 +7,7 @@ const exampleMovies = require("./movies");
 // Do not change the line above.
 
 /**
- * getAllMovieTitles()
+ * getAllMovieTitles() 
  * -----------------------------
  * Returns all of titles from an array of movies. If the inputted `movies` array is empty, throw an error with a message.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
@@ -30,7 +30,15 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  // loop thru entire movie titles array
+  // throw error if movies [] empty
+
+  if(movies.length === 0) {
+    throw 'Error. There are no movies listed.';
+  }
+  return movies.map((movie) => movie.title)
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +58,21 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rated = 'G') {
+    // should use the `.some()` method 
+    // ✕ should throw an error if there are no movies
+    // ✕ should return `true` if any movie in the list has the given rating 
+    // ✕ should return `false` if any movie in the list has the given rating 
+    // ✕ should dynamically change depending on the movies inputted
+    // ✕ if no rating is passed, the default should be 'G'
+
+  if(movies.length === 0) {
+    throw 'There are no movies listed.';
+  }
+  let rating = movies.some((movie) => { return movie.rated === rated }
+  );
+  return rating;
+}
 
 /**
  * findById()
@@ -68,7 +90,18 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+// let findThatMovie = movies.find(movie =>{
+//   return findThatMovie.imdbID === id 
+// })
+//   return findThatMovie === 0 ? null : findingNemo;
+
+if(!movies.length)
+  throw 'Error. No movies found!';  
+
+let findThatMovie = movies.find((movie) => movie.imdbID === id);
+  return !findThatMovie ? null : findThatMovie;
+}
 
 /**
  * filterByGenre()
@@ -92,7 +125,16 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  // try to LowerCase()
+  // loop, throw
+  if(!movies.length) {
+    throw "For the millionth time, there are no movies listed!."
+  };
+  return movies.filter((movie) => movie.genre
+    .toLowerCase().includes
+    (genre.toLowerCase()));
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +160,14 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  // need additonal method to filter start and end.
+  if(!movies.length)
+    throw 'Error. No movies are available!';
+    return movies.filter( movie => 
+      movie.released 
+      .slice(-5) <= year)
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +183,14 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, minmetascore) {
+  // throw error if array empty
+  // check every movie metascore if > min score 
+  if(!movies.length)
+  throw 'Error. Again, no movies!';
+
+  return movies.every(({ metascore }) => metascore > minmetascore);
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +216,21 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  // throw error if  array empty
+  // loop thru each movie - .find() movie title = Rotten Tomatoes, set to variable
+  // assign movie title, Rotten Tomatoes, return
+
+  if(!movies.length)
+  throw 'Error. Again, no more movies darn it!';
+
+  return movies.map((movie) => {
+    let getRottenTomatoesScore = movie.ratings.find((movie) => 
+    movie.source === 'Rotten Tomatoes');
+
+  return { [movie.title] : getRottenTomatoesScore.value }
+  });
+}
 
 // Do not change anything below this line.
 module.exports = {
