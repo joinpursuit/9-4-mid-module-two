@@ -132,7 +132,7 @@ function filterByGenre(movies, genre) {
   if(movies.length === 0) throw Error
 
   let genreMatching = movies.filter((movie) => {
-    return movie.genre.includes(genre)
+    return movie.genre.includes(genre.toLowerCase())
   })
   return genreMatching
 }
@@ -163,7 +163,13 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if(movies.length === 0) throw Error
+
+  let moviesBefore = movies.filter((movie) => movie.released.slice(7) <= year)
+  
+  return moviesBefore
+}
 
 /**
  * checkMinMetascores()
@@ -179,7 +185,14 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores(movies) {}
+function checkMinMetascores(movies, metascore) {
+  if(movies.length === 0) return Error
+
+  let minMeta = movies.every((movie) => {
+    return movie.metascore >= metascore
+  })
+  return minMeta
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -205,8 +218,26 @@ function checkMinMetascores(movies) {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if(movies.length === 0) throw Error
 
+  let finalObject = movies.map((movie) => {
+  
+
+  })
+  return finalObject
+
+}
+
+
+
+
+
+
+// use map() and find()
+// throws error
+// return an object {[movie.title] : }
+// use to find() on rotten tomatoes
 // Do not change anything below this line.
 module.exports = {
   getAllMovieTitles,
