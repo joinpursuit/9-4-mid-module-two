@@ -5,7 +5,21 @@
 */
 const exampleMovies = require("./movies");
 // Do not change the line above.
+//  &&&&&&&&&&&&&
+//ERROR HANDLING w/Cephus
+//this error will throw for all the functions for movies array
+const noMoviesHandle = (movies) => {
+  if (!movies.length) {
+    throw new Error(kiwi);
+  }
+};
 
+const noIdHandle = (movies) => {
+  if (!movies.find((movie) => movie.imdbId === id)) {
+    //if i cant find the rating IMBDID then throw this error
+    throw new Error(kiwi);
+  }
+};
 /**
  * getAllMovieTitles()
  * -----------------------------
@@ -30,7 +44,12 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+const getAllMovieTitles = (movies) => {
+  //destructure function above
+  noMoviesHandle(movies); // should show there
+  return movies.map((movie) => movie.title);
+  //will push into new array
+};
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +69,12 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+const checkIfAnyMovieHasRating = (movies, rating = "G") => {
+  //more destructuring above
+  //throw that error handle below
+  noMoviesHandle(movies);
+  return movies.some((movie) => movie.rated === rating);
+};
 
 /**
  * findById()
@@ -68,7 +92,12 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+const findById = (movies, id) => {
+  //destructure above! and add new parameter of ID
+  noMoviesHandle(movies);
+  //invoke error handling above for movies array
+  return movies.find((movie) => movie.imdbID === id) || null;
+};
 
 /**
  * filterByGenre()
@@ -92,7 +121,11 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+const filterByGenre = (movies, genre) => {
+  noMoviesHandle(movies);
+  //below im gonna try to invoke the element and use string literals to generate the return string that only includes the genre.
+  return movies.filter((element) => element.genre.toLowerCase().includes(`${genre.toLowerCase()}`));
+};
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +151,12 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+const getAllMoviesReleasedAtOrBeforeYear = (movies, year) => {
+  noMoviesHandle(movies);
+  return movies.filter(
+    (element) => Number(element.released.split(" ").reverse()[0]) <= year
+  );
+};
 
 /**
  * checkMinMetascores()
@@ -134,7 +172,11 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+const checkMinMetascores = (movies, metascore) => {
+  noMoviesHandle(movies);
+  //below check tot see if the index of metascore is greater than or equal metascore in array
+  return movies.every((element) => element.metascore >= metascore);
+};
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +202,15 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+const getRottenTomatoesScoreByMovie = (movies) => {
+  noMoviesHandle(movies);
+  // return the object with title in array and find the ratings for rotten tomatoes
+  return movies.map((movie) => {
+    //use the find() method below to use key for movies title and valuerotten tomatoes %
+     // researched the source method to trigger a boolean result to print the actual value percentage
+    return {[movie.title]: movie.ratings.find(rating => rating.source === "Rotten Tomatoes").value}
+  })
+};
 
 // Do not change anything below this line.
 module.exports = {
