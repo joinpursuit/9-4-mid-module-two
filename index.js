@@ -34,8 +34,11 @@ function getAllMovieTitles(movies) {
   let movieList=[];  //create an array for the answer
   //error handling for if the movies array is empty
   //However, !movies, movied===[] and movies===0 didn't work. Nor did typeof movies !== "object"
+  try {
   if (typeof movies !== "object") {
     throw ("There are no movies");
+  }}catch (e){
+    alert(e)
   }
   //for each movie in the movies array, push the title into the answer array
   movies.map((movie) => {
@@ -148,12 +151,9 @@ function findById(movies, imdbID) {
  */
 function filterByGenre(movies, genre) {
   genre = genre.toLowerCase
-  const genreMovies=[]
-  movies.filter((element) => {
-    if (element.genre===genre){
-      genreMovies.push(element)
-    }}
-  )
+  const genreMovies = movies.filter((element) => {
+    (element.genre===genre)
+})
 
   return genreMovies
 }
@@ -243,7 +243,27 @@ function checkMinMetascores(movies, metascore) {
     ];
  */
 function getRottenTomatoesScoreByMovie(movies) {
+try{
+  !movies;
+}catch(error){
+  throw "there are no movies in this array"
+}
 
+
+let tomatoMovies = movies.map(element => element.title)
+let tomatoNumbers= movies.map(element => element.ratings[0][1])
+
+const finalArray = {
+  tomatoMovies: tomatoNumbers 
+}
+
+console.log(tomatoMovies)
+console.log(tomatoNumbers)
+console.log(finalArray)
+return(tomatoMovies)
+//take care of error handling
+//put all movies into an array as keys
+//add the rotten tomato score as a variable for each movie
 }
 
 // Do not change anything below this line.
