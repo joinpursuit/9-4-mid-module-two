@@ -121,7 +121,7 @@ function findById(movies, id) {
 function filterByGenre(movies,type) {
   if(!movies.length){
     throw `error`
-  }
+  }//filtering the type of genre in the movies and to make it easier to search we lowercase the key and value in the object 
   return movies.filter(({genre}) => genre.toLowerCase().includes(type.toLowerCase()))
 }
 
@@ -152,7 +152,7 @@ function filterByGenre(movies,type) {
 function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
   if(!movies.length){
     throw `error`
-  }               
+  }  // filter every 'movie' object and we use slice to only get the year and use our comparison method to check if was equal to or less than the given year. use Number 'function' to make sure it converts strings to number if any and compare afterwards               
   return (movies.filter((movie) => Number(movie.released.slice(6)) <= year))
 }
 
@@ -171,6 +171,10 @@ function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
  *  //>  false
  */
 function checkMinMetascores(movies, score) {
+  if (!movies.length){
+    throw `error`
+  }
+   // every method goes through the object of 'metascore' and compares that its above the 'given' score 
   return movies.every(({metascore}) => metascore > score)
 }
 
@@ -198,7 +202,12 @@ function checkMinMetascores(movies, score) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (!movies.length){ 
+  throw `error`
+  // creating a new array with 'map' method, our new array 'movie'  now has the keys and values of titles and scores 
+} return movies.map(movie => ({[movie.title] : movie.ratings.find(element => element.source === `Rotten Tomatoes`).value}))
+}
 
 // Do not change anything below this line.
 module.exports = {
