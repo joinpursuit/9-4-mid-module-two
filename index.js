@@ -85,7 +85,16 @@ function findById(movies, id) {
   if (movies.length === 0){
     throw ("Error")
   }
-  return movies.find(movie => movie.imbdID === id)
+  let movieId = movies.find((movie) => {
+    if (movie.imdbID === id){
+      return movie;
+    }
+  });
+    if (movieId === 0){
+      return null;
+    } else {
+      return movieId;
+    }
 }
 
 /**
@@ -114,7 +123,12 @@ function filterByGenre(movies , genre) {
   if (movies.length === 0){
     throw ('Error')
   }
-  return movies.filter(movie => movies.genre.includes(genre))
+  let genreOfMovie = movies.filter((movie) => {
+    if (movie.genre.toUpperCase().includes(genre.toUpperCase())) {
+      return movie;
+    }
+  });
+  return genreOfMovie
 }
 
 /**
