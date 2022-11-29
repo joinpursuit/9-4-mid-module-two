@@ -169,7 +169,21 @@ try{
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
+  if(!movies.length){
+    throw "movies array is empty"
+  }
+try{
+  let rel = movies.filter((element) => {
+    if(element.released.substring(element.released.length - 4) <= year){
+      return element
+    }
+  })
+  return rel
+} catch (error) {
+  console.error(error)
+  }
+}
 
 /**
  * checkMinMetascores()

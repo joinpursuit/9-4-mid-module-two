@@ -120,7 +120,7 @@ describe("findById()", () => {
   });
 });
 
-describe.only("filterByGenre()", () => {
+describe("filterByGenre()", () => {
   test("should use the `.filter()` method", () => {
     const text = filterByGenre.toString();
     expect(text).toMatch(/\.filter\(.*\)/s);
@@ -204,7 +204,7 @@ describe("checkMinMetascores()", () => {
   });
 });
 
-describe("getAllMoviesReleasedAtOrBeforeYear()", () => {
+describe.only("getAllMoviesReleasedAtOrBeforeYear()", () => {
   test("should use the `.filter()` method", () => {
     const text = filterByGenre.toString();
     expect(text).toMatch(/\.filter\(.*\)/s);
