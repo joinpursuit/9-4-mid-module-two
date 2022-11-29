@@ -199,7 +199,16 @@ try{
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies,metascore) {
+  if(!movies.length){
+    throw "movies array is empty"
+  }
+try {
+  return movies.every((element) => {return element.metascore >= metascore})
+} catch (error) {
+  console.error(error)
+  }
+}
 
 /**
  * getRottenTomatoesScoreByMovie()

@@ -204,7 +204,7 @@ describe("checkMinMetascores()", () => {
   });
 });
 
-describe.only("getAllMoviesReleasedAtOrBeforeYear()", () => {
+describe("getAllMoviesReleasedAtOrBeforeYear()", () => {
   test("should use the `.filter()` method", () => {
     const text = filterByGenre.toString();
     expect(text).toMatch(/\.filter\(.*\)/s);
