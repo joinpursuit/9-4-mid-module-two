@@ -142,7 +142,13 @@ const exampleMovies = require("./movies");
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+    function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+      if (movies.length === 0) 
+        throw "error";
+        return movies.filter((movie) => {
+          return movie.released.split(" ")[2] <= year;
+      });
+    }
 
 /**
  * checkMinMetascores()
