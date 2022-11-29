@@ -178,7 +178,13 @@ if(movies.length === 0){
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+let checkMinMetascores = (movies, metascore) => {
+  if(movies.length === 0){
+    throw "No movies"
+   }
+  let metaMovie = movies.every(movie => movie.metascore >= metascore)
+  return metaMovie
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -204,7 +210,15 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+let getRottenTomatoesScoreByMovie =(movies) => {
+  if(movies.length === 0){
+    throw "No movies"
+   }
+   return movies.map((movie)=> {
+    let rottenScore = {[movie.title]: movie.ratings.find(ratingType => ratingType.source === "Rotten Tomatoes").value}
+    return rottenScore
+   });
+};
 
 // Do not change anything below this line.
 module.exports = {
