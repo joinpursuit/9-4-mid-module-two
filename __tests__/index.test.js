@@ -76,7 +76,7 @@ describe("checkIfAnyMovieHasRating()", () => {
   });
 });
 
-describe.skip("findById()", () => {
+describe("findById()", () => {
   test("should use the `.find()` method", () => {
     const text = findById.toString();
     expect(text).toMatch(/\.find\(.*\)/s);
@@ -249,7 +249,7 @@ describe("getAllMoviesReleasedAtOrBeforeYear()", () => {
   });
 });
 
-describe.skip("getRottenTomatoesScoreByMovie()", () => {
+describe("getRottenTomatoesScoreByMovie()", () => {
   test("should use the `.map()` method", () => {
     const text = getRottenTomatoesScoreByMovie.toString();
     expect(text).toMatch(/\.map\(.*\)/s);
