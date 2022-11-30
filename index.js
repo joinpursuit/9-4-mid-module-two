@@ -33,12 +33,10 @@ const exampleMovies = require("./movies");
  */
 function getAllMovieTitles(arr) {
   if (arr.length === 0) {
-    throw console.error();
+    throw error;
   }
-  let output = arr.map((el) => {
-    return el.title;
-  });
-  return output;
+  return  arr.map((el) =>  el.title); // when you only require one value from the object thgis is the syntax
+  
 }
 
 /**
@@ -61,16 +59,17 @@ function getAllMovieTitles(arr) {
  */
 function checkIfAnyMovieHasRating(arr, rated = "G") {
   if (arr.length === 0) {
-    throw console.error();
+    throw Error;
   }
-  return arr.some((el) => {
-    if (el.rated === rated) {
-      return true;
-    }
-    if (el.rated !== rated) {
-      return false;
-    }
-  });
+ return  arr.some((el) => 
+    // if (el.rated === rated) {
+    //   return true;
+    // }
+    // if (el.rated !== rated) {
+    //   return false;
+    // }
+     el.rated === rated
+  );
 }
 
 /**
@@ -95,7 +94,7 @@ function findById(arr, id) {
   }
   return arr.find((el) => {
     return el.imdbID === id;
-  });
+  }) || null;
 }
 
 /**
@@ -120,22 +119,28 @@ function findById(arr, id) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre(arr, genre) {
-  if (arr.length === 0) {
-    throw [];
+function filterByGenre(movies, genre) {
+  // if (arr.length === 0) {
+  //   throw [];
+  // }
+  // let genres = [];
+
+  // let output = arr.filter((el) => {
+  //   genres = el.genre.split(",");
+  //   el.genre = genres;
+  //   // console.log(el.genre)
+  //   if (el.genre.includes(genre)) {
+  //     return el.title;
+  //   }
+  // });
+
+  // return output;
+  if (movies.length === 0) {
+    throw "error"
+  } else {
+    return movies.filter(el => el.genre.toLowerCase().includes(genre.toLowerCase()))
+
   }
-  let genres = [];
-
-  let output = arr.filter((el) => {
-    genres = el.genre.split(",");
-    el.genre = genres;
-    // console.log(el.genre)
-    if (el.genre.includes(genre)) {
-      return el.title;
-    }
-  });
-
-  return output;
 }
 
 /**
@@ -221,15 +226,21 @@ function checkMinMetascores(arr, score) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie(arr) {
-  if (arr.length < 1) {
-    throw "no movies";
+function getRottenTomatoesScoreByMovie(movArray) {
+  if (!movArray.length) {
+    throw error;
   }
+    return movArray.map((movie) => {
+        let rtScore = movie.ratings.find(rating => rating.source === "Rotten Tomatoes");
+        return {[movie.title] : rtScore.value}
+ 
+})
 
-  return movies.map(movie => {
-    const found = movie.ratings.find(score =>(score.source === 'Rotten Tomatoes'))
-    return { [movie.title]: found.value }
-  })
+// return movies.map(movie => {
+//   const found = movie.ratings.find(score =>(score.source === 'Rotten Tomatoes'))
+//   return { [movie.title]: found.value }
+// })
+//correct answer
 }
 
 // Do not change anything below this line.
