@@ -64,6 +64,14 @@ function checkIfAnyMovieHasRating(movies, rating = 'G') {
   if (movies.length == 0) throw 'ERROR: No movies.';
   // Using some, we check to see if the rating param is present in the 'rated' value of each movie 
   return movies.some(movie => movie.rated === rating)
+  // I challenged myself to do these same functions with our old learning
+  // for (let movie of movies) {
+  //   if (movie.rated === rating) {
+  //     return true;
+  //   } else {
+  //     return false
+  //   }
+  // }
 }
 
 /**
@@ -86,10 +94,17 @@ function findById(movies, id) {
   // Error catch if movies array is empty
   if (movies.length == 0) throw 'ERROR: No movies.';
   //  Searching through movies array to see find the given id param within the movie.imbdID property
+  //  Normally find would return undefined if the given thing isnt found(when it finds it, its "truthy"), but by specifying a different "falsey" value, I am telling this functiuon to return 'null' instead of the normal 'undefined'
   return movies.find(movie => {
     return movie.imdbID === id;
-    // Normally find would return undefined if the given thing isnt found(when it finds it, its "truthy"), but by specifying a different "falsey" value, I am telling this functiuon to return 'null' instead of the normal 'undefined'
   }) || null;
+
+  // for (let movie of movies) {
+  //   if (movie.imdbID === id) {
+  //     return movie;
+  //   }
+  // }
+  // return null;
 }
 
 /**
@@ -121,6 +136,14 @@ function filterByGenre(movies, genre) {
   //  In order to make this case-insensitive, I used toLowerCase to make all string uniformly small
   let genreMatch = movies.filter(movie => movie.genre.toLowerCase().includes(genre.toLowerCase()))
   return genreMatch;
+
+  // let genreMatch = [];
+  // for (movie of movies) {
+  //   if (movie.genre.includes(genre)) {
+  //     genreMatch.push(movie);
+  //   }
+  // }
+  // return genreMatch;
 }
 
 /**
