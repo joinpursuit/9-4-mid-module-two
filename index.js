@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -30,7 +31,15 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  // Error catch if movies array is empty
+  if (movies.length == 0) throw 'ERROR: No movies.';
+  // Use of map to iterate through provided movies array and return each title
+  const movTitles = movies.map((movie) => {
+    return movie.title;
+  })
+  return movTitles;
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +59,20 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = 'G') {
+  // Error catch if movies array is empty
+  if (movies.length == 0) throw 'ERROR: No movies.';
+  // Using some, we check to see if the rating param is present in the 'rated' value of each movie 
+  return movies.some(movie => movie.rated === rating)
+  // I challenged myself to do these same functions with our old learning
+  // for (let movie of movies) {
+  //   if (movie.rated === rating) {
+  //     return true;
+  //   } else {
+  //     return false
+  //   }
+  // }
+}
 
 /**
  * findById()
@@ -68,7 +90,22 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  // Error catch if movies array is empty
+  if (movies.length == 0) throw 'ERROR: No movies.';
+  //  Searching through movies array to see find the given id param within the movie.imbdID property
+  //  Normally find would return undefined if the given thing isnt found(when it finds it, its "truthy"), but by specifying a different "falsey" value, I am telling this functiuon to return 'null' instead of the normal 'undefined'
+  return movies.find(movie => {
+    return movie.imdbID === id;
+  }) || null;
+
+  // for (let movie of movies) {
+  //   if (movie.imdbID === id) {
+  //     return movie;
+  //   }
+  // }
+  // return null;
+}
 
 /**
  * filterByGenre()
@@ -92,7 +129,22 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  // Error catch if movies array is empty
+  if (movies.length == 0) throw 'ERROR: No movies.';
+  //  Using filter, we look through each movie genre string to see if it includes the given genre param
+  //  In order to make this case-insensitive, I used toLowerCase to make all string uniformly small
+  let genreMatch = movies.filter(movie => movie.genre.toLowerCase().includes(genre.toLowerCase()))
+  return genreMatch;
+
+  // let genreMatch = [];
+  // for (movie of movies) {
+  //   if (movie.genre.includes(genre)) {
+  //     genreMatch.push(movie);
+  //   }
+  // }
+  // return genreMatch;
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +170,12 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  // Error catch if movies array is empty
+  if (movies.length == 0) throw 'ERROR: No movies.';
+  //  Here I am looking at each movies released string, slicing it 4 from the end(which gives us just the year).  Then, bc it was a string, I am turning that into a number, and comparing that with the given year param.  I tried doing this in a longer and more complicated way using split and join on the released string, but it kept failing repeatedly.  Once I took a step back I realized I could do all of that using slice and Number chained together instead.
+  return movies.filter(movie => Number(movie.released.slice(-4)) <= year);
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +191,12 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  // Error catch if movies array is empty
+  if (movies.length == 0) throw 'ERROR: No movies.';
+  // Using every, we are checking to see if each movies metascore, is greater than the given metascore param.
+  return movies.every(movie => movie.metascore >= metascore);
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +222,17 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  // Error catch if movies array is empty
+  if (movies.length == 0) throw 'ERROR: No movies.';
+  // Here we are iterating through each element of the movies array using map.
+  // We are then creating a new bucket and using find to look through EACH movies ratings array and finding the one whose source is Rotten Tomatoes.
+  // Finally, we are returning the movie title and the rating of our found Rotten Tomatoes rating to create a new object.ƒ
+  return movies.map(movie => {
+    let rottenRating = movie.ratings.find((rating) => rating.source === 'Rotten Tomatoes');
+    return { [movie.title]: rottenRating.value };
+  })
+}
 
 // Do not change anything below this line.
 module.exports = {
